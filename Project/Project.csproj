@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D1C7E1F-66D1-4D0E-8208-46475CCD42CE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Project</RootNamespace>
+    <AssemblyName>Project</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomTextBox.Designer.cs">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PokemonQA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PokemonQA.Designer.cs">
+      <DependentUpon>PokemonQA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pokemon.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NameQuestion.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Question.cs" />
+    <Compile Include="TypeQuestion.cs" />
+    <EmbeddedResource Include="CustomTextBox.resx">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PokemonQA.resx">
+      <DependentUpon>PokemonQA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Pokemon Hollow.ttf" />
+    <None Include="Resources\Types\Water_Psychic.png" />
+    <None Include="Resources\Types\Water_Poison.png" />
+    <None Include="Resources\Types\Water_Ice.png" />
+    <None Include="Resources\Types\Water_Flying.png" />
+    <None Include="Resources\Types\Water_Fighting.png" />
+    <None Include="Resources\Types\Water.png" />
+    <None Include="Resources\Types\Steel.png" />
+    <None Include="Resources\Types\Rock_Water.png" />
+    <None Include="Resources\Types\Rock_Ground.png" />
+    <None Include="Resources\Types\Rock_Flying.png" />
+    <None Include="Resources\Types\Rock.png" />
+    <None Include="Resources\Types\Psychic_Fairy.png" />
+    <None Include="Resources\Types\Psychic.png" />
+    <None Include="Resources\Types\Poison_Ground.png" />
+    <None Include="Resources\Types\Poison_Flying.png" />
+    <None Include="Resources\Types\Poison.png" />
+    <None Include="Resources\Types\Normal_Flying.png" />
+    <None Include="Resources\Types\Normal_Fairy.png" />
+    <None Include="Resources\Types\Normal.png" />
+    <None Include="Resources\Types\Ice_Psychic.png" />
+    <None Include="Resources\Types\Ice_Flying.png" />
+    <None Include="Resources\Types\Ice.png" />
+    <None Include="Resources\Types\Ground.png" />
+    <None Include="Resources\Types\Grass_Psychic.png" />
+    <None Include="Resources\Types\Grass_Poison.png" />
+    <None Include="Resources\Types\Grass.png" />
+    <None Include="Resources\Types\Ghost_Poison.png" />
+    <None Include="Resources\Types\Ghost.png" />
+    <None Include="Resources\Backgrounds\Background3.png" />
+    <None Include="Resources\Backgrounds\Background4.png" />
+    <None Include="Resources\Backgrounds\Background5.png" />
+    <None Include="Resources\Backgrounds\Background6.png" />
+    <None Include="Resources\Backgrounds\Background7.png" />
+    <None Include="Resources\Backgrounds\Background8.png" />
+    <Content Include="Resources\Backgrounds\Background1.png" />
+    <Content Include="Resources\Backgrounds\Background2.png" />
+    <None Include="Resources\Types\Bug.png" />
+    <None Include="Resources\Types\Bug_Flying.png" />
+    <None Include="Resources\Types\Bug_Grass.png" />
+    <None Include="Resources\Types\Bug_Poison.png" />
+    <None Include="Resources\Types\Dark.png" />
+    <None Include="Resources\Types\Dragon.png" />
+    <None Include="Resources\Types\Dragon_Flying.png" />
+    <None Include="Resources\Types\Electric.png" />
+    <None Include="Resources\Types\Electric_Flying.png" />
+    <None Include="Resources\Types\Electric_Steel.png" />
+    <None Include="Resources\Types\Fairy.png" />
+    <None Include="Resources\Types\Fighting.png" />
+    <None Include="Resources\Types\Fire.png" />
+    <None Include="Resources\Types\Fire_Flying.png" />
+    <None Include="Resources\Types\Flying.png" />
+    <Content Include="Resources\Gen_I\Abra.png" />
+    <Content Include="Resources\Gen_I\Aerodactyl.png" />
+    <Content Include="Resources\Gen_I\Alakazam.png" />
+    <Content Include="Resources\Gen_I\Arbok.png" />
+    <Content Include="Resources\Gen_I\Arcanine.png" />
+    <Content Include="Resources\Gen_I\Articuno.png" />
+    <Content Include="Resources\Gen_I\Beedrill.png" />
+    <Content Include="Resources\Gen_I\Bellsprout.png" />
+    <Content Include="Resources\Gen_I\Blastoise.png" />
+    <Content Include="Resources\Gen_I\Bulbasaur.png" />
+    <Content Include="Resources\Gen_I\Butterfree.png" />
+    <Content Include="Resources\Gen_I\Caterpie.png" />
+    <Content Include="Resources\Gen_I\Chansey.png" />
+    <Content Include="Resources\Gen_I\Charizard.png" />
+    <Content Include="Resources\Gen_I\Charmander.png" />
+    <Content Include="Resources\Gen_I\Charmeleon.png" />
+    <Content Include="Resources\Gen_I\Clefable.png" />
+    <Content Include="Resources\Gen_I\Clefairy.png" />
+    <Content Include="Resources\Gen_I\Cloyster.png" />
+    <Content Include="Resources\Gen_I\Cubone.png" />
+    <Content Include="Resources\Gen_I\Dewgong.png" />
+    <Content Include="Resources\Gen_I\Diglett.png" />
+    <Content Include="Resources\Gen_I\Ditto.png" />
+    <Content Include="Resources\Gen_I\Dodrio.png" />
+    <Content Include="Resources\Gen_I\Doduo.png" />
+    <Content Include="Resources\Gen_I\Dragonair.png" />
+    <Content Include="Resources\Gen_I\Dragonite.png" />
+    <Content Include="Resources\Gen_I\Dratini.png" />
+    <Content Include="Resources\Gen_I\Drowzee.png" />
+    <Content Include="Resources\Gen_I\Dugtrio.png" />
+    <Content Include="Resources\Gen_I\Eevee.png" />
+    <Content Include="Resources\Gen_I\Ekans.png" />
+    <Content Include="Resources\Gen_I\Electabuzz.png" />
+    <Content Include="Resources\Gen_I\Electrode.png" />
+    <Content Include="Resources\Gen_I\Exeggcute.png" />
+    <Content Include="Resources\Gen_I\Exeggutor.png" />
+    <Content Include="Resources\Gen_I\Farfetchd.png" />
+    <Content Include="Resources\Gen_I\Fearow.png" />
+    <Content Include="Resources\Gen_I\Flareon.png" />
+    <Content Include="Resources\Gen_I\Gastly.png" />
+    <Content Include="Resources\Gen_I\Gengar.png" />
+    <Content Include="Resources\Gen_I\Geodude.png" />
+    <Content Include="Resources\Gen_I\Gloom.png" />
+    <Content Include="Resources\Gen_I\Golbat.png" />
+    <Content Include="Resources\Gen_I\Goldeen.png" />
+    <Content Include="Resources\Gen_I\Golduck.png" />
+    <Content Include="Resources\Gen_I\Golem.png" />
+    <Content Include="Resources\Gen_I\Graveler.png" />
+    <Content Include="Resources\Gen_I\Grimer.png" />
+    <Content Include="Resources\Gen_I\Growlithe.png" />
+    <Content Include="Resources\Gen_I\Gyarados.png" />
+    <Content Include="Resources\Gen_I\Haunter.png" />
+    <Content Include="Resources\Gen_I\Hitmonchan.png" />
+    <Content Include="Resources\Gen_I\Hitmonlee.png" />
+    <Content Include="Resources\Gen_I\Horsea.png" />
+    <Content Include="Resources\Gen_I\Hypno.png" />
+    <Content Include="Resources\Gen_I\Ivysaur.gif" />
+    <Content Include="Resources\Gen_I\Jigglypuff.png" />
+    <Content Include="Resources\Gen_I\Jolteon.png" />
+    <Content Include="Resources\Gen_I\Jynx.png" />
+    <Content Include="Resources\Gen_I\Kabuto.png" />
+    <Content Include="Resources\Gen_I\Kabutops.png" />
+    <Content Include="Resources\Gen_I\Kadabra.png" />
+    <Content Include="Resources\Gen_I\Kakuna.png" />
+    <Content Include="Resources\Gen_I\Kangaskhan.png" />
+    <Content Include="Resources\Gen_I\Kingler.png" />
+    <Content Include="Resources\Gen_I\Koffing.png" />
+    <Content Include="Resources\Gen_I\Krabby.png" />
+    <Content Include="Resources\Gen_I\Lapras.png" />
+    <Content Include="Resources\Gen_I\Lickitung.png" />
+    <Content Include="Resources\Gen_I\Machamp.png" />
+    <Content Include="Resources\Gen_I\Machoke.png" />
+    <Content Include="Resources\Gen_I\Machop.png" />
+    <Content Include="Resources\Gen_I\Magikarp.png" />
+    <Content Include="Resources\Gen_I\Magmar.png" />
+    <Content Include="Resources\Gen_I\Magnemite.png" />
+    <Content Include="Resources\Gen_I\Magneton.png" />
+    <Content Include="Resources\Gen_I\Mankey.png" />
+    <Content Include="Resources\Gen_I\Marowak.png" />
+    <Content Include="Resources\Gen_I\Meowth.png" />
+    <Content Include="Resources\Gen_I\Metapod.png" />
+    <Content Include="Resources\Gen_I\Mew.png" />
+    <Content Include="Resources\Gen_I\Mewtwo.png" />
+    <Content Include="Resources\Gen_I\Moltres.png" />
+    <Content Include="Resources\Gen_I\Mr_Mime.png" />
+    <Content Include="Resources\Gen_I\Muk.png" />
+    <Content Include="Resources\Gen_I\Nidoking.png" />
+    <Content Include="Resources\Gen_I\Nidoqueen.png" />
+    <Content Include="Resources\Gen_I\Nidoran_f.png" />
+    <Content Include="Resources\Gen_I\Nidoran_m.png" />
+    <Content Include="Resources\Gen_I\Nidorina.png" />
+    <Content Include="Resources\Gen_I\Nidorino.png" />
+    <Content Include="Resources\Gen_I\Ninetales.png" />
+    <Content Include="Resources\Gen_I\Oddish.png" />
+    <Content Include="Resources\Gen_I\Omanyte.png" />
+    <Content Include="Resources\Gen_I\Omastar.png" />
+    <Content Include="Resources\Gen_I\Onix.png" />
+    <Content Include="Resources\Gen_I\Paras.png" />
+    <Content Include="Resources\Gen_I\Parasect.png" />
+    <Content Include="Resources\Gen_I\Persian.png" />
+    <Content Include="Resources\Gen_I\Pidgeot.png" />
+    <Content Include="Resources\Gen_I\Pidgeotto.png" />
+    <Content Include="Resources\Gen_I\Pidgey.png" />
+    <Content Include="Resources\Gen_I\Pikachu.png" />
+    <Content Include="Resources\Gen_I\Pinsir.png" />
+    <Content Include="Resources\Gen_I\Poliwag.png" />
+    <Content Include="Resources\Gen_I\Poliwhirl.png" />
+    <Content Include="Resources\Gen_I\Poliwrath.png" />
+    <Content Include="Resources\Gen_I\Ponyta.png" />
+    <Content Include="Resources\Gen_I\Porygon.png" />
+    <Content Include="Resources\Gen_I\Primeape.png" />
+    <Content Include="Resources\Gen_I\Psyduck.png" />
+    <Content Include="Resources\Gen_I\Raichu.png" />
+    <Content Include="Resources\Gen_I\Rapidash.png" />
+    <Content Include="Resources\Gen_I\Raticate.png" />
+    <Content Include="Resources\Gen_I\Rattata.png" />
+    <Content Include="Resources\Gen_I\Rhydon.png" />
+    <Content Include="Resources\Gen_I\Rhyhorn.png" />
+    <Content Include="Resources\Gen_I\Sandshrew.png" />
+    <Content Include="Resources\Gen_I\Sandslash.png" />
+    <Content Include="Resources\Gen_I\Scyther.png" />
+    <Content Include="Resources\Gen_I\Seadra.png" />
+    <Content Include="Resources\Gen_I\Seaking.png" />
+    <Content Include="Resources\Gen_I\Seel.png" />
+    <Content Include="Resources\Gen_I\Shellder.png" />
+    <Content Include="Resources\Gen_I\Slowbro.png" />
+    <Content Include="Resources\Gen_I\Slowpoke.png" />
+    <Content Include="Resources\Gen_I\Snorlax.png" />
+    <Content Include="Resources\Gen_I\Spearow.png" />
+    <Content Include="Resources\Gen_I\Squirtle.png" />
+    <Content Include="Resources\Gen_I\Starmie.png" />
+    <Content Include="Resources\Gen_I\Staryu.png" />
+    <Content Include="Resources\Gen_I\Tangela.png" />
+    <Content Include="Resources\Gen_I\Tauros.png" />
+    <Content Include="Resources\Gen_I\Tentacool.png" />
+    <Content Include="Resources\Gen_I\Tentacruel.png" />
+    <Content Include="Resources\Gen_I\Vaporeon.png" />
+    <Content Include="Resources\Gen_I\Venomoth.png" />
+    <Content Include="Resources\Gen_I\Venonat.png" />
+    <Content Include="Resources\Gen_I\Venusaur.png" />
+    <Content Include="Resources\Gen_I\Victreebel.png" />
+    <Content Include="Resources\Gen_I\Vileplume.png" />
+    <Content Include="Resources\Gen_I\Voltorb.png" />
+    <Content Include="Resources\Gen_I\Vulpix.png" />
+    <Content Include="Resources\Gen_I\Wartortle.png" />
+    <Content Include="Resources\Gen_I\Weedle.png" />
+    <Content Include="Resources\Gen_I\Weepinbell.png" />
+    <Content Include="Resources\Gen_I\Weezing.png" />
+    <Content Include="Resources\Gen_I\Wigglytuff.png" />
+    <Content Include="Resources\Gen_I\Zapdos.png" />
+    <Content Include="Resources\Gen_I\Zubat.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
