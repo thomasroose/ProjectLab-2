@@ -583,6 +583,46 @@ namespace Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EndingScreen1 {
+            get {
+                object obj = ResourceManager.GetObject("EndingScreen1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EndingScreen2 {
+            get {
+                object obj = ResourceManager.GetObject("EndingScreen2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EndingScreen3 {
+            get {
+                object obj = ResourceManager.GetObject("EndingScreen3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EndingScreen4 {
+            get {
+                object obj = ResourceManager.GetObject("EndingScreen4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Exeggcute {
             get {
                 object obj = ResourceManager.GetObject("Exeggcute", resourceCulture);
@@ -936,6 +976,16 @@ namespace Project.Properties {
         internal static System.Drawing.Bitmap Ice_Psychic {
             get {
                 object obj = ResourceManager.GetObject("Ice_Psychic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IntroScreen {
+            get {
+                object obj = ResourceManager.GetObject("IntroScreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1501,6 +1551,16 @@ namespace Project.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Pokemon_Solid {
+            get {
+                object obj = ResourceManager.GetObject("Pokemon_Solid", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Poliwag {
@@ -1816,6 +1876,16 @@ namespace Project.Properties {
         internal static System.Drawing.Bitmap Starmie {
             get {
                 object obj = ResourceManager.GetObject("Starmie", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StartScreen {
+            get {
+                object obj = ResourceManager.GetObject("StartScreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -725,6 +725,27 @@
     <value>..\Resources\Gen_I\Zubat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Pokemon_Hollow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pokemon Hollow.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Font\Pokemon Hollow.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Pokemon_Solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Font\Pokemon Solid.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StartScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameBackgrounds\StartScreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EndingScreen1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameBackgrounds\EndingScreen1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EndingScreen2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameBackgrounds\EndingScreen2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EndingScreen3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameBackgrounds\EndingScreen3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EndingScreen4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameBackgrounds\EndingScreen4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IntroScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameBackgrounds\IntroScreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

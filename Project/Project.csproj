@@ -52,6 +52,12 @@
     <Compile Include="CustomTextBox.Designer.cs">
       <DependentUpon>CustomTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelDoubleBuffered.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PanelDoubleBuffered.Designer.cs">
+      <DependentUpon>PanelDoubleBuffered.cs</DependentUpon>
+    </Compile>
     <Compile Include="PokemonQA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     <Compile Include="TypeQuestion.cs" />
     <EmbeddedResource Include="CustomTextBox.resx">
       <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelDoubleBuffered.resx">
+      <DependentUpon>PanelDoubleBuffered.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PokemonQA.resx">
       <DependentUpon>PokemonQA.cs</DependentUpon>
@@ -95,7 +104,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Pokemon Hollow.ttf" />
+    <None Include="Resources\GameBackgrounds\IntroScreen.png" />
+    <None Include="Resources\GameBackgrounds\StartScreen.jpg" />
+    <EmbeddedResource Include="Resources\Font\Pokemon Hollow.ttf" />
+    <EmbeddedResource Include="Resources\Font\Pokemon Solid.ttf" />
     <None Include="Resources\Types\Water_Psychic.png" />
     <None Include="Resources\Types\Water_Poison.png" />
     <None Include="Resources\Types\Water_Ice.png" />
@@ -147,6 +159,10 @@
     <None Include="Resources\Types\Fire.png" />
     <None Include="Resources\Types\Fire_Flying.png" />
     <None Include="Resources\Types\Flying.png" />
+    <None Include="Resources\GameBackgrounds\EndingScreen1.png" />
+    <None Include="Resources\GameBackgrounds\EndingScreen2.jpg" />
+    <None Include="Resources\GameBackgrounds\EndingScreen3.png" />
+    <None Include="Resources\GameBackgrounds\EndingScreen4.jpg" />
     <Content Include="Resources\Gen_I\Abra.png" />
     <Content Include="Resources\Gen_I\Aerodactyl.png" />
     <Content Include="Resources\Gen_I\Alakazam.png" />
