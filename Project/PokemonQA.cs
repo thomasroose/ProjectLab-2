@@ -24,9 +24,12 @@ namespace Project
 
         private static int wrongAnswers = 0;
         private static int correctAnswers = 0;
+        const int gameTimerStartValue = 10;
+        const int searchTimerStartValue = 30;
+
         Question question;
         Random rnd = new Random();
-        int timeLeft;
+        int timeLeft, searchTimeLeft;
         int randomPokemon, pickQuestion;
         int numberToWin;
         string endScreenImage = "EndingScreen";
@@ -71,6 +74,14 @@ namespace Project
                     ctrl.Font = pokemonFontIntro;
             }
 
+            foreach (Control ctrl in SearchPanel.Controls)
+            {
+                if (ctrl is Button)
+                    ctrl.Font = pokemonFont;
+                if (ctrl is Label)
+                    ctrl.Font = pokemonFont;
+            }
+
             foreach (Control ctrl in QAPanel.Controls)
             {
                 if (ctrl is Button)
@@ -97,7 +108,9 @@ namespace Project
             //Adding every panel to a List
             listPanel.Add(StartPanel);
             listPanel.Add(IntroPanel);
+            listPanel.Add(SearchPanel);
             listPanel.Add(QAPanel);
+            listPanel.Add(BufferPanel);
             listPanel.Add(EndingPanel);
             //On startup → Bring StartPanel to front
             listPanel[0].BringToFront();
@@ -112,6 +125,7 @@ namespace Project
             listPanel[1].BringToFront();
         }
 
+
         /*Components on IntroPanel (Panel 1)
        ________________________________________________________*/
         private void StartButton_Click(object sender, EventArgs e)
@@ -119,10 +133,38 @@ namespace Project
             //Grab value of NumericUpDown; Bring QAPanel to front; Generate new question
             numberToWin = (int)NumberOfPokemonComp.Value;
             listPanel[2].BringToFront();
-            NewQuestion();
+            searchTimeLeft = searchTimerStartValue;
+            SearchTimer.Start();
         }
 
-        /*Components on QAPanel (Panel 2)
+
+        /*Components on SearchPanel (Panel 2)
+        ________________________________________________________*/
+        private void ActAsInput_Click(object sender, EventArgs e)
+        {
+            listPanel[3].BringToFront();
+            NewQuestion();
+        }
+        private void SearchTimer_Tick(object sender, EventArgs e)
+        {
+            if (searchTimeLeft > 0)
+            {
+                // Display the new time left
+                // by updating the Time Left label.
+                searchTimeLeft--;
+                SearchTimerLabel.Text = searchTimeLeft.ToString();
+            }
+            else
+            {
+                // If the user ran out of time, stop the timer
+                SearchTimer.Stop();
+                SearchTimerLabel.Text = "You ran out of time!";
+                CheckEnding();
+            }
+        }
+
+
+        /*Components on QAPanel (Panel 3)
         ________________________________________________________*/
         private void NewQuestionButton_Click(object sender, EventArgs e)
         {
@@ -167,7 +209,7 @@ namespace Project
             {
                 // Display the new time left
                 // by updating the Time Left label.
-                timeLeft = timeLeft - 1;
+                timeLeft--;
                 TimerLabel.Text = timeLeft + " seconds";
             }
             else
@@ -215,7 +257,7 @@ namespace Project
             QuestionLabel.Text = question.GetQuestion();
 
 
-            timeLeft = 10;
+            timeLeft = gameTimerStartValue;
             GameTimer.Start();
         }
         private void ClearButtons()
@@ -314,17 +356,20 @@ namespace Project
         private void CheckReward()
         {
             correctAnswers++;
-            if(correctAnswers >= numberToWin)
+            if (correctAnswers >= numberToWin)
             {
                 //When you've answered enough questions correctly → set random background & bring EndingPanel to front
                 endScreenImage += rnd.Next(1, 5);
                 EndingPanel.BackgroundImage = (Image)Properties.Resources.ResourceManager.GetObject(endScreenImage);
-                listPanel[3].BringToFront();
+                listPanel[5].BringToFront();
                 EndingLabel.Text = "You've caught enough Pokémon!";
             }
             else
-                //When you haven't answered enough questions correctly yet → generate new question
-                NewQuestion();
+            {
+                //set some text to gj u got the pokemon but theres X more or something
+                //BufferPanel.BackgroundImage = //some relevant image
+                DisplayBufferPanel();
+            }
         }
         private void CheckEnding()
         {
@@ -334,26 +379,38 @@ namespace Project
                 //When you've answered too many questions incorrectly → set random background & bring EndingPanel to front 
                 endScreenImage += rnd.Next(1, 5);
                 EndingPanel.BackgroundImage = (Image)Properties.Resources.ResourceManager.GetObject(endScreenImage);
-                listPanel[3].BringToFront();
+                listPanel[5].BringToFront();
                 EndingLabel.Text = "You've lost too many Pokémon...";
 
             }
             else
             {
-                //When you haven't answered too many questions incorrectly → generate new question
+                //set some text to gj u got the pokemon but theres X more or something
+                //BufferPanel.BackgroundImage = //some relevant image
                 LostPokemonLabel.Text = "You've lost " + wrongAnswers + " Pokémon";
-                NewQuestion();
+                DisplayBufferPanel();
             }
         }
 
 
-        /*Components on EndingPanel (Panel 3)
+        private void DisplayBufferPanel()
+        {
+            listPanel[4].BringToFront();
+            //make thread sleep? or use another timer(BufferTimer) for X seconds then restart searchtimer
+            SearchTimerLabel.ResetText();
+            listPanel[2].BringToFront();
+            searchTimeLeft = searchTimerStartValue;
+            SearchTimer.Start();
+        }
+
+        /*Components on EndingPanel (Panel 5)
         ________________________________________________________*/
         private void RestartButton_Click(object sender, EventArgs e)
         {
             ResetValues();
             listPanel[1].BringToFront();
         }
+
         private void EndButton_Click(object sender, EventArgs e)
         {
             Enabled = false;

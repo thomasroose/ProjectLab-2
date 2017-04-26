@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PokemonQA));
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
+            this.SearchPanel = new System.Windows.Forms.Panel();
+            this.SearchTimer = new System.Windows.Forms.Timer(this.components);
+            this.SearchTimerLabel = new System.Windows.Forms.Label();
+            this.ActAsInput = new System.Windows.Forms.Button();
             this.IntroPanel = new Project.PanelDoubleBuffered();
             this.StartButton = new System.Windows.Forms.Button();
             this.NumberOfPokemonComp = new System.Windows.Forms.NumericUpDown();
@@ -51,6 +55,8 @@
             this.EndButton = new System.Windows.Forms.Button();
             this.RestartButton = new System.Windows.Forms.Button();
             this.EndingLabel = new System.Windows.Forms.Label();
+            this.BufferPanel = new System.Windows.Forms.Panel();
+            this.SearchPanel.SuspendLayout();
             this.IntroPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfPokemonComp)).BeginInit();
             this.StartPanel.SuspendLayout();
@@ -63,6 +69,40 @@
             // 
             this.GameTimer.Interval = 1000;
             this.GameTimer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // SearchPanel
+            // 
+            this.SearchPanel.BackColor = System.Drawing.Color.Black;
+            this.SearchPanel.Controls.Add(this.ActAsInput);
+            this.SearchPanel.Controls.Add(this.SearchTimerLabel);
+            this.SearchPanel.Location = new System.Drawing.Point(0, 0);
+            this.SearchPanel.Name = "SearchPanel";
+            this.SearchPanel.Size = new System.Drawing.Size(826, 589);
+            this.SearchPanel.TabIndex = 12;
+            // 
+            // SearchTimer
+            // 
+            this.SearchTimer.Interval = 1000;
+            this.SearchTimer.Tick += new System.EventHandler(this.SearchTimer_Tick);
+            // 
+            // SearchTimerLabel
+            // 
+            this.SearchTimerLabel.AutoSize = true;
+            this.SearchTimerLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.SearchTimerLabel.Location = new System.Drawing.Point(373, 262);
+            this.SearchTimerLabel.Name = "SearchTimerLabel";
+            this.SearchTimerLabel.Size = new System.Drawing.Size(0, 13);
+            this.SearchTimerLabel.TabIndex = 0;
+            // 
+            // ActAsInput
+            // 
+            this.ActAsInput.Location = new System.Drawing.Point(321, 362);
+            this.ActAsInput.Name = "ActAsInput";
+            this.ActAsInput.Size = new System.Drawing.Size(178, 76);
+            this.ActAsInput.TabIndex = 1;
+            this.ActAsInput.Text = "ActAsInput";
+            this.ActAsInput.UseVisualStyleBackColor = true;
+            this.ActAsInput.Click += new System.EventHandler(this.ActAsInput_Click);
             // 
             // IntroPanel
             // 
@@ -379,6 +419,13 @@
             this.EndingLabel.TabIndex = 0;
             this.EndingLabel.Text = "EndingLabel";
             // 
+            // BufferPanel
+            // 
+            this.BufferPanel.Location = new System.Drawing.Point(0, 0);
+            this.BufferPanel.Name = "BufferPanel";
+            this.BufferPanel.Size = new System.Drawing.Size(826, 589);
+            this.BufferPanel.TabIndex = 13;
+            // 
             // PokemonQA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,6 +433,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(826, 589);
+            this.Controls.Add(this.BufferPanel);
+            this.Controls.Add(this.SearchPanel);
             this.Controls.Add(this.IntroPanel);
             this.Controls.Add(this.StartPanel);
             this.Controls.Add(this.QAPanel);
@@ -395,6 +444,8 @@
             this.RightToLeftLayout = true;
             this.Text = "Pokemon";
             this.Load += new System.EventHandler(this.PokemonQA_Load);
+            this.SearchPanel.ResumeLayout(false);
+            this.SearchPanel.PerformLayout();
             this.IntroPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfPokemonComp)).EndInit();
             this.StartPanel.ResumeLayout(false);
@@ -429,6 +480,11 @@
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button EndButton;
         private System.Windows.Forms.Button RestartButton;
+        private System.Windows.Forms.Panel SearchPanel;
+        private System.Windows.Forms.Label SearchTimerLabel;
+        private System.Windows.Forms.Timer SearchTimer;
+        private System.Windows.Forms.Button ActAsInput;
+        private System.Windows.Forms.Panel BufferPanel;
     }
 }
 
