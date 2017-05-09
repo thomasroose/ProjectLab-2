@@ -29,21 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PokemonQA));
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.SearchPanel = new System.Windows.Forms.Panel();
-            this.SearchTimer = new System.Windows.Forms.Timer(this.components);
-            this.SearchTimerLabel = new System.Windows.Forms.Label();
             this.ActAsInput = new System.Windows.Forms.Button();
-            this.IntroPanel = new Project.PanelDoubleBuffered();
-            this.StartButton = new System.Windows.Forms.Button();
-            this.NumberOfPokemonComp = new System.Windows.Forms.NumericUpDown();
-            this.StartPanel = new Project.PanelDoubleBuffered();
-            this.TitleLabel = new System.Windows.Forms.Label();
-            this.PlayButton = new System.Windows.Forms.Button();
+            this.SearchTimerLabel = new System.Windows.Forms.Label();
+            this.SearchTimer = new System.Windows.Forms.Timer(this.components);
+            this.BufferPanel = new System.Windows.Forms.Panel();
             this.QAPanel = new Project.PanelDoubleBuffered();
             this.QuestionLabel = new System.Windows.Forms.Label();
-            this.PokemonPictureBox = new System.Windows.Forms.PictureBox();
             this.Answer4Button = new System.Windows.Forms.Button();
             this.NewQuestionButton = new System.Windows.Forms.Button();
             this.Answer2Button = new System.Windows.Forms.Button();
@@ -55,14 +48,18 @@
             this.EndButton = new System.Windows.Forms.Button();
             this.RestartButton = new System.Windows.Forms.Button();
             this.EndingLabel = new System.Windows.Forms.Label();
-            this.BufferPanel = new System.Windows.Forms.Panel();
+            this.IntroPanel = new Project.PanelDoubleBuffered();
+            this.StartButton = new System.Windows.Forms.Button();
+            this.StartPanel = new Project.PanelDoubleBuffered();
+            this.TitleLabel = new System.Windows.Forms.Label();
+            this.PlayButton = new System.Windows.Forms.Button();
+            this.PokemonPictureBox = new System.Windows.Forms.PictureBox();
             this.SearchPanel.SuspendLayout();
-            this.IntroPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumberOfPokemonComp)).BeginInit();
-            this.StartPanel.SuspendLayout();
             this.QAPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).BeginInit();
             this.EndingPanel.SuspendLayout();
+            this.IntroPanel.SuspendLayout();
+            this.StartPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -80,20 +77,6 @@
             this.SearchPanel.Size = new System.Drawing.Size(826, 589);
             this.SearchPanel.TabIndex = 12;
             // 
-            // SearchTimer
-            // 
-            this.SearchTimer.Interval = 1000;
-            this.SearchTimer.Tick += new System.EventHandler(this.SearchTimer_Tick);
-            // 
-            // SearchTimerLabel
-            // 
-            this.SearchTimerLabel.AutoSize = true;
-            this.SearchTimerLabel.ForeColor = System.Drawing.Color.Maroon;
-            this.SearchTimerLabel.Location = new System.Drawing.Point(373, 262);
-            this.SearchTimerLabel.Name = "SearchTimerLabel";
-            this.SearchTimerLabel.Size = new System.Drawing.Size(0, 13);
-            this.SearchTimerLabel.TabIndex = 0;
-            // 
             // ActAsInput
             // 
             this.ActAsInput.Location = new System.Drawing.Point(321, 362);
@@ -104,107 +87,29 @@
             this.ActAsInput.UseVisualStyleBackColor = true;
             this.ActAsInput.Click += new System.EventHandler(this.ActAsInput_Click);
             // 
-            // IntroPanel
+            // SearchTimerLabel
             // 
-            this.IntroPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SearchTimerLabel.AutoSize = true;
+            this.SearchTimerLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.SearchTimerLabel.Location = new System.Drawing.Point(373, 262);
+            this.SearchTimerLabel.Name = "SearchTimerLabel";
+            this.SearchTimerLabel.Size = new System.Drawing.Size(0, 13);
+            this.SearchTimerLabel.TabIndex = 0;
+            // 
+            // SearchTimer
+            // 
+            this.SearchTimer.Interval = 1000;
+            this.SearchTimer.Tick += new System.EventHandler(this.SearchTimer_Tick);
+            // 
+            // BufferPanel
+            // 
+            this.BufferPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.IntroPanel.BackColor = System.Drawing.Color.Transparent;
-            this.IntroPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("IntroPanel.BackgroundImage")));
-            this.IntroPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.IntroPanel.Controls.Add(this.StartButton);
-            this.IntroPanel.Controls.Add(this.NumberOfPokemonComp);
-            this.IntroPanel.Location = new System.Drawing.Point(0, 0);
-            this.IntroPanel.Name = "IntroPanel";
-            this.IntroPanel.Size = new System.Drawing.Size(826, 590);
-            this.IntroPanel.TabIndex = 2;
-            // 
-            // StartButton
-            // 
-            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartButton.BackColor = System.Drawing.Color.Transparent;
-            this.StartButton.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.StartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StartButton.Location = new System.Drawing.Point(612, 433);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(178, 101);
-            this.StartButton.TabIndex = 3;
-            this.StartButton.Text = "Start";
-            this.StartButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.StartButton.UseVisualStyleBackColor = false;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
-            // 
-            // NumberOfPokemonComp
-            // 
-            this.NumberOfPokemonComp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.NumberOfPokemonComp.BackColor = System.Drawing.Color.Gainsboro;
-            this.NumberOfPokemonComp.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.NumberOfPokemonComp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumberOfPokemonComp.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.NumberOfPokemonComp.Location = new System.Drawing.Point(707, 348);
-            this.NumberOfPokemonComp.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.NumberOfPokemonComp.Name = "NumberOfPokemonComp";
-            this.NumberOfPokemonComp.Size = new System.Drawing.Size(69, 27);
-            this.NumberOfPokemonComp.TabIndex = 2;
-            this.NumberOfPokemonComp.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // StartPanel
-            // 
-            this.StartPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.StartPanel.BackColor = System.Drawing.Color.Transparent;
-            this.StartPanel.BackgroundImage = global::Project.Properties.Resources.StartScreen;
-            this.StartPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.StartPanel.Controls.Add(this.TitleLabel);
-            this.StartPanel.Controls.Add(this.PlayButton);
-            this.StartPanel.Location = new System.Drawing.Point(0, 0);
-            this.StartPanel.Name = "StartPanel";
-            this.StartPanel.Size = new System.Drawing.Size(826, 590);
-            this.StartPanel.TabIndex = 10;
-            // 
-            // TitleLabel
-            // 
-            this.TitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.TitleLabel.ForeColor = System.Drawing.Color.Red;
-            this.TitleLabel.Location = new System.Drawing.Point(298, 55);
-            this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(231, 76);
-            this.TitleLabel.TabIndex = 1;
-            this.TitleLabel.Text = "Game Title";
-            this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // PlayButton
-            // 
-            this.PlayButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.PlayButton.BackColor = System.Drawing.Color.Transparent;
-            this.PlayButton.FlatAppearance.BorderSize = 0;
-            this.PlayButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.PlayButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.PlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlayButton.ForeColor = System.Drawing.Color.Red;
-            this.PlayButton.Location = new System.Drawing.Point(351, 444);
-            this.PlayButton.Name = "PlayButton";
-            this.PlayButton.Size = new System.Drawing.Size(124, 90);
-            this.PlayButton.TabIndex = 0;
-            this.PlayButton.Text = "Play";
-            this.PlayButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.PlayButton.UseVisualStyleBackColor = false;
-            this.PlayButton.Click += new System.EventHandler(this.PlayButton_Click);
+            this.BufferPanel.Location = new System.Drawing.Point(0, 0);
+            this.BufferPanel.Name = "BufferPanel";
+            this.BufferPanel.Size = new System.Drawing.Size(826, 589);
+            this.BufferPanel.TabIndex = 13;
             // 
             // QAPanel
             // 
@@ -235,19 +140,6 @@
             this.QuestionLabel.Size = new System.Drawing.Size(498, 90);
             this.QuestionLabel.TabIndex = 8;
             this.QuestionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // PokemonPictureBox
-            // 
-            this.PokemonPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PokemonPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.PokemonPictureBox.Location = new System.Drawing.Point(499, 55);
-            this.PokemonPictureBox.Name = "PokemonPictureBox";
-            this.PokemonPictureBox.Size = new System.Drawing.Size(258, 246);
-            this.PokemonPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PokemonPictureBox.TabIndex = 4;
-            this.PokemonPictureBox.TabStop = false;
             // 
             // Answer4Button
             // 
@@ -419,12 +311,93 @@
             this.EndingLabel.TabIndex = 0;
             this.EndingLabel.Text = "EndingLabel";
             // 
-            // BufferPanel
+            // IntroPanel
             // 
-            this.BufferPanel.Location = new System.Drawing.Point(0, 0);
-            this.BufferPanel.Name = "BufferPanel";
-            this.BufferPanel.Size = new System.Drawing.Size(826, 589);
-            this.BufferPanel.TabIndex = 13;
+            this.IntroPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IntroPanel.BackColor = System.Drawing.Color.Transparent;
+            this.IntroPanel.BackgroundImage = global::Project.Properties.Resources.IntroScreenMbed;
+            this.IntroPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.IntroPanel.Controls.Add(this.StartButton);
+            this.IntroPanel.Location = new System.Drawing.Point(0, 0);
+            this.IntroPanel.Name = "IntroPanel";
+            this.IntroPanel.Size = new System.Drawing.Size(826, 590);
+            this.IntroPanel.TabIndex = 2;
+            // 
+            // StartButton
+            // 
+            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StartButton.BackColor = System.Drawing.Color.Transparent;
+            this.StartButton.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.StartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StartButton.Location = new System.Drawing.Point(612, 433);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(178, 101);
+            this.StartButton.TabIndex = 3;
+            this.StartButton.Text = "Start";
+            this.StartButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.StartButton.UseVisualStyleBackColor = false;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // StartPanel
+            // 
+            this.StartPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StartPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StartPanel.BackColor = System.Drawing.Color.Transparent;
+            this.StartPanel.BackgroundImage = global::Project.Properties.Resources.StartScreen;
+            this.StartPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.StartPanel.Controls.Add(this.TitleLabel);
+            this.StartPanel.Controls.Add(this.PlayButton);
+            this.StartPanel.Location = new System.Drawing.Point(0, 0);
+            this.StartPanel.Name = "StartPanel";
+            this.StartPanel.Size = new System.Drawing.Size(826, 590);
+            this.StartPanel.TabIndex = 10;
+            // 
+            // TitleLabel
+            // 
+            this.TitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TitleLabel.ForeColor = System.Drawing.Color.Red;
+            this.TitleLabel.Location = new System.Drawing.Point(298, 55);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(231, 76);
+            this.TitleLabel.TabIndex = 1;
+            this.TitleLabel.Text = "Game Title";
+            this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // PlayButton
+            // 
+            this.PlayButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.PlayButton.BackColor = System.Drawing.Color.Transparent;
+            this.PlayButton.FlatAppearance.BorderSize = 0;
+            this.PlayButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.PlayButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PlayButton.ForeColor = System.Drawing.Color.Red;
+            this.PlayButton.Location = new System.Drawing.Point(351, 444);
+            this.PlayButton.Name = "PlayButton";
+            this.PlayButton.Size = new System.Drawing.Size(124, 90);
+            this.PlayButton.TabIndex = 0;
+            this.PlayButton.Text = "Play";
+            this.PlayButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.PlayButton.UseVisualStyleBackColor = false;
+            this.PlayButton.Click += new System.EventHandler(this.PlayButton_Click);
+            // 
+            // PokemonPictureBox
+            // 
+            this.PokemonPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PokemonPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.PokemonPictureBox.Location = new System.Drawing.Point(499, 55);
+            this.PokemonPictureBox.Name = "PokemonPictureBox";
+            this.PokemonPictureBox.Size = new System.Drawing.Size(258, 246);
+            this.PokemonPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PokemonPictureBox.TabIndex = 4;
+            this.PokemonPictureBox.TabStop = false;
             // 
             // PokemonQA
             // 
@@ -433,12 +406,12 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(826, 589);
-            this.Controls.Add(this.BufferPanel);
-            this.Controls.Add(this.SearchPanel);
             this.Controls.Add(this.IntroPanel);
             this.Controls.Add(this.StartPanel);
             this.Controls.Add(this.QAPanel);
             this.Controls.Add(this.EndingPanel);
+            this.Controls.Add(this.BufferPanel);
+            this.Controls.Add(this.SearchPanel);
             this.DoubleBuffered = true;
             this.Name = "PokemonQA";
             this.RightToLeftLayout = true;
@@ -446,13 +419,12 @@
             this.Load += new System.EventHandler(this.PokemonQA_Load);
             this.SearchPanel.ResumeLayout(false);
             this.SearchPanel.PerformLayout();
-            this.IntroPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.NumberOfPokemonComp)).EndInit();
-            this.StartPanel.ResumeLayout(false);
             this.QAPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).EndInit();
             this.EndingPanel.ResumeLayout(false);
             this.EndingPanel.PerformLayout();
+            this.IntroPanel.ResumeLayout(false);
+            this.StartPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -476,7 +448,6 @@
         private PanelDoubleBuffered IntroPanel;
         private PanelDoubleBuffered EndingPanel;
         private System.Windows.Forms.Label EndingLabel;
-        private System.Windows.Forms.NumericUpDown NumberOfPokemonComp;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button EndButton;
         private System.Windows.Forms.Button RestartButton;

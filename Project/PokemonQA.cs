@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using TCP;
+using System.Threading.Tasks;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Project
 {
@@ -25,22 +24,24 @@ namespace Project
         private static int wrongAnswers = 0;
         private static int correctAnswers = 0;
         const int gameTimerStartValue = 10;
-        const int searchTimerStartValue = 30;
+        const int searchTimerStartValue = 5;
 
         Question question;
         Random rnd = new Random();
         int timeLeft, searchTimeLeft;
         int randomPokemon, pickQuestion;
-        int numberToWin;
+        int numberToWin = 4;
         string endScreenImage = "EndingScreen";
-        
+        bool receivedData = false;
+
+        Communication com = new Communication();
+        Packet packet = new Packet(0);
 
         public PokemonQA()
         {
             InitializeComponent();
             //Initialize custom Pokémon font
             InitializeFont();
-
         }
         private void InitializeFont()
         {
@@ -130,11 +131,12 @@ namespace Project
        ________________________________________________________*/
         private void StartButton_Click(object sender, EventArgs e)
         {
-            //Grab value of NumericUpDown; Bring QAPanel to front; Generate new question
-            numberToWin = (int)NumberOfPokemonComp.Value;
+            // Bring QAPanel to front; Generate new question
             listPanel[2].BringToFront();
             searchTimeLeft = searchTimerStartValue;
             SearchTimer.Start();
+            //ConnectMbed();
+            ReceiveData();
         }
 
 
@@ -153,6 +155,12 @@ namespace Project
                 // by updating the Time Left label.
                 searchTimeLeft--;
                 SearchTimerLabel.Text = searchTimeLeft.ToString();
+                if (receivedData)
+                {
+                    listPanel[3].BringToFront();
+                    NewQuestion();
+                    SearchTimer.Stop();
+                }
             }
             else
             {
@@ -227,7 +235,7 @@ namespace Project
         private void NewQuestion()
         {
             ClearButtons(); //Reset text & image of AnswerButtons & TimerLabel
-            randomPokemon = rnd.Next(1, 152);
+            //randomPokemon = rnd.Next(1,152);
             pickQuestion = rnd.Next(1, 3);
             if (pickQuestion == 1)
             {
@@ -391,16 +399,27 @@ namespace Project
                 DisplayBufferPanel();
             }
         }
+      //  private void ConnectMbed()
+      //  {
+      //      ReceiveData();
+      //  }
+        private void ReceiveData()
+        {
+            com.start();           
+            randomPokemon = packet.getPokemon();
+            receivedData = true;
 
-
+        }
         private void DisplayBufferPanel()
         {
-            listPanel[4].BringToFront();
-            //make thread sleep? or use another timer(BufferTimer) for X seconds then restart searchtimer
+            receivedData = false;
+            listPanel[4].BringToFront();       
             SearchTimerLabel.ResetText();
+            System.Threading.Thread.Sleep(1000);
             listPanel[2].BringToFront();
             searchTimeLeft = searchTimerStartValue;
             SearchTimer.Start();
+            ReceiveData();
         }
 
         /*Components on EndingPanel (Panel 5)

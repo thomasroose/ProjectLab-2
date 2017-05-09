@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project
 {
@@ -29,7 +25,7 @@ namespace Project
             "Porygon", "Omanyte", "Omastar", "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno",
             "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite", "Mewtwo", "Mew"};
         //                           1|  2|  3|  4|  5|  6|  7|  8|  9|  0|
-        private int[] types = { -1, 18, 18, 18,  1,  1, 19,  3,  3,  3, 12,     //0
+        private int[] types = { 0, 18, 18, 18,  1,  1, 19,  3,  3,  3, 12,     //0
                                     12, 20, 21, 21, 21, 22, 22, 22,  0,  0,     //1
                                     22, 22,  6,  6,  7,  7,  8,  8,  6,  6,     //2
                                     23,  6,  6, 23, 17, 17,  1,  1, 24, 24,     //3
@@ -131,12 +127,10 @@ namespace Project
             }
             return false;
         }
-
         public string GetBackgroundName()
         {
             return backgroundNames[backgroundList[types[id]]];
         }
-
         public int GetBackgroundNumber()
         {
             return backgroundList[types[id]];

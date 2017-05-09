@@ -993,6 +993,16 @@ namespace Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IntroScreenMbed {
+            get {
+                object obj = ResourceManager.GetObject("IntroScreenMbed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ivysaur {
             get {
                 object obj = ResourceManager.GetObject("Ivysaur", resourceCulture);
