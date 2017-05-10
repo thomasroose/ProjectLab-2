@@ -24,15 +24,14 @@ namespace Project
         private static int wrongAnswers = 0;
         private static int correctAnswers = 0;
         const int gameTimerStartValue = 10;
-        const int searchTimerStartValue = 5;
+        const int timerStartValue = 1;
 
         Question question;
         Random rnd = new Random();
-        int timeLeft, searchTimeLeft;
+        int timeLeft, connectTimeLeft, receiveTimeLeft, bufferTimeLeft;
         int randomPokemon, pickQuestion;
         int numberToWin = 4;
         string endScreenImage = "EndingScreen";
-        bool receivedData = false;
 
         Communication com = new Communication();
         Packet packet = new Packet(0);
@@ -93,6 +92,12 @@ namespace Project
                     ctrl.Font = pokemonFont;
             }
 
+            foreach (Control ctrl in BufferPanel.Controls)
+            {
+                if (ctrl is Label)
+                    ctrl.Font = pokemonFont;
+            }
+
             foreach (Control ctrl in EndingPanel.Controls)
             {
                 if (ctrl is Button)
@@ -131,12 +136,10 @@ namespace Project
        ________________________________________________________*/
         private void StartButton_Click(object sender, EventArgs e)
         {
-            // Bring QAPanel to front; Generate new question
+            // Bring SearchPanel to front; Connect to Mbed
             listPanel[2].BringToFront();
-            searchTimeLeft = searchTimerStartValue;
-            SearchTimer.Start();
-            //ConnectMbed();
-            ReceiveData();
+            connectTimeLeft = timerStartValue;
+            ConnectTimer.Start();
         }
 
 
@@ -147,37 +150,9 @@ namespace Project
             listPanel[3].BringToFront();
             NewQuestion();
         }
-        private void SearchTimer_Tick(object sender, EventArgs e)
-        {
-            if (searchTimeLeft > 0)
-            {
-                // Display the new time left
-                // by updating the Time Left label.
-                searchTimeLeft--;
-                SearchTimerLabel.Text = searchTimeLeft.ToString();
-                if (receivedData)
-                {
-                    listPanel[3].BringToFront();
-                    NewQuestion();
-                    SearchTimer.Stop();
-                }
-            }
-            else
-            {
-                // If the user ran out of time, stop the timer
-                SearchTimer.Stop();
-                SearchTimerLabel.Text = "You ran out of time!";
-                CheckEnding();
-            }
-        }
-
 
         /*Components on QAPanel (Panel 3)
         ________________________________________________________*/
-        private void NewQuestionButton_Click(object sender, EventArgs e)
-        {
-            NewQuestion();
-        }
         //Clicking AnswerButtons stops GameTimer & checks whether answer is (in)correct
         private void Answer1Button_Click(object sender, EventArgs e)
         {
@@ -222,10 +197,7 @@ namespace Project
             }
             else
             {
-                // If the user ran out of time, stop the timer
                 GameTimer.Stop();
-                TimerLabel.Text = "Time's up!";
-                CheckEnding();
             }
         }
         
@@ -376,7 +348,10 @@ namespace Project
             {
                 //set some text to gj u got the pokemon but theres X more or something
                 //BufferPanel.BackgroundImage = //some relevant image
-                DisplayBufferPanel();
+                BufferLabel.Text = "You've answered correctly!";
+                listPanel[4].BringToFront();
+                bufferTimeLeft = timerStartValue;
+                BufferTimer.Start();
             }
         }
         private void CheckEnding()
@@ -396,30 +371,29 @@ namespace Project
                 //set some text to gj u got the pokemon but theres X more or something
                 //BufferPanel.BackgroundImage = //some relevant image
                 LostPokemonLabel.Text = "You've lost " + wrongAnswers + " Pokémon";
-                DisplayBufferPanel();
+                BufferLabel.Text = "Wrong answer!";
+                listPanel[4].BringToFront();
+                bufferTimeLeft = timerStartValue;
+                BufferTimer.Start();
             }
         }
-      //  private void ConnectMbed()
-      //  {
-      //      ReceiveData();
-      //  }
+        private void ConnectMbed()
+        {
+            com.connect();
+            ReceiveData();
+        }
         private void ReceiveData()
         {
-            com.start();           
+            com.receive();           
             randomPokemon = packet.getPokemon();
-            receivedData = true;
-
+            listPanel[3].BringToFront();
+            NewQuestion();
         }
-        private void DisplayBufferPanel()
+        private void FinishBufferPanel()
         {
-            receivedData = false;
-            listPanel[4].BringToFront();       
-            SearchTimerLabel.ResetText();
-            System.Threading.Thread.Sleep(1000);
             listPanel[2].BringToFront();
-            searchTimeLeft = searchTimerStartValue;
-            SearchTimer.Start();
-            ReceiveData();
+            receiveTimeLeft = timerStartValue;
+            ReceiveTimer.Start();
         }
 
         /*Components on EndingPanel (Panel 5)
@@ -427,7 +401,48 @@ namespace Project
         private void RestartButton_Click(object sender, EventArgs e)
         {
             ResetValues();
-            listPanel[1].BringToFront();
+            listPanel[2].BringToFront();
+            receiveTimeLeft = timerStartValue;
+            ReceiveTimer.Start();
+        }
+
+        private void BufferTimer_Tick(object sender, EventArgs e)
+        {
+            if (bufferTimeLeft > 0)
+            {
+                bufferTimeLeft--;
+            }
+            else
+            {
+                BufferTimer.Stop();
+                FinishBufferPanel();
+            }
+        }
+
+        private void ReceiveTimer_Tick(object sender, EventArgs e)
+        {
+            if (receiveTimeLeft > 0)
+            {
+                receiveTimeLeft--;
+            }
+            else
+            {
+                ReceiveTimer.Stop();
+                ReceiveData();
+            }
+        }
+
+        private void ConnectTimer_Tick(object sender, EventArgs e)
+        {
+            if (connectTimeLeft > 0)
+            {
+                connectTimeLeft--;
+            }
+            else
+            {
+                ConnectTimer.Stop();
+                ConnectMbed();
+            }
         }
 
         private void EndButton_Click(object sender, EventArgs e)

@@ -30,15 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
-            this.SearchPanel = new System.Windows.Forms.Panel();
-            this.ActAsInput = new System.Windows.Forms.Button();
-            this.SearchTimerLabel = new System.Windows.Forms.Label();
-            this.SearchTimer = new System.Windows.Forms.Timer(this.components);
             this.BufferPanel = new System.Windows.Forms.Panel();
+            this.BufferLabel = new System.Windows.Forms.Label();
+            this.ConnectTimer = new System.Windows.Forms.Timer(this.components);
+            this.SearchPanel = new System.Windows.Forms.Panel();
+            this.SearchLabel = new System.Windows.Forms.Label();
+            this.ReceiveTimer = new System.Windows.Forms.Timer(this.components);
+            this.BufferTimer = new System.Windows.Forms.Timer(this.components);
+            this.IntroPanel = new Project.PanelDoubleBuffered();
+            this.StartButton = new System.Windows.Forms.Button();
+            this.StartPanel = new Project.PanelDoubleBuffered();
+            this.TitleLabel = new System.Windows.Forms.Label();
+            this.PlayButton = new System.Windows.Forms.Button();
             this.QAPanel = new Project.PanelDoubleBuffered();
             this.QuestionLabel = new System.Windows.Forms.Label();
+            this.PokemonPictureBox = new System.Windows.Forms.PictureBox();
             this.Answer4Button = new System.Windows.Forms.Button();
-            this.NewQuestionButton = new System.Windows.Forms.Button();
             this.Answer2Button = new System.Windows.Forms.Button();
             this.Answer3Button = new System.Windows.Forms.Button();
             this.Answer1Button = new System.Windows.Forms.Button();
@@ -48,18 +55,13 @@
             this.EndButton = new System.Windows.Forms.Button();
             this.RestartButton = new System.Windows.Forms.Button();
             this.EndingLabel = new System.Windows.Forms.Label();
-            this.IntroPanel = new Project.PanelDoubleBuffered();
-            this.StartButton = new System.Windows.Forms.Button();
-            this.StartPanel = new Project.PanelDoubleBuffered();
-            this.TitleLabel = new System.Windows.Forms.Label();
-            this.PlayButton = new System.Windows.Forms.Button();
-            this.PokemonPictureBox = new System.Windows.Forms.PictureBox();
+            this.BufferPanel.SuspendLayout();
             this.SearchPanel.SuspendLayout();
-            this.QAPanel.SuspendLayout();
-            this.EndingPanel.SuspendLayout();
             this.IntroPanel.SuspendLayout();
             this.StartPanel.SuspendLayout();
+            this.QAPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).BeginInit();
+            this.EndingPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -67,49 +69,142 @@
             this.GameTimer.Interval = 1000;
             this.GameTimer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
-            // SearchPanel
-            // 
-            this.SearchPanel.BackColor = System.Drawing.Color.Black;
-            this.SearchPanel.Controls.Add(this.ActAsInput);
-            this.SearchPanel.Controls.Add(this.SearchTimerLabel);
-            this.SearchPanel.Location = new System.Drawing.Point(0, 0);
-            this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(826, 589);
-            this.SearchPanel.TabIndex = 12;
-            // 
-            // ActAsInput
-            // 
-            this.ActAsInput.Location = new System.Drawing.Point(321, 362);
-            this.ActAsInput.Name = "ActAsInput";
-            this.ActAsInput.Size = new System.Drawing.Size(178, 76);
-            this.ActAsInput.TabIndex = 1;
-            this.ActAsInput.Text = "ActAsInput";
-            this.ActAsInput.UseVisualStyleBackColor = true;
-            this.ActAsInput.Click += new System.EventHandler(this.ActAsInput_Click);
-            // 
-            // SearchTimerLabel
-            // 
-            this.SearchTimerLabel.AutoSize = true;
-            this.SearchTimerLabel.ForeColor = System.Drawing.Color.Maroon;
-            this.SearchTimerLabel.Location = new System.Drawing.Point(373, 262);
-            this.SearchTimerLabel.Name = "SearchTimerLabel";
-            this.SearchTimerLabel.Size = new System.Drawing.Size(0, 13);
-            this.SearchTimerLabel.TabIndex = 0;
-            // 
-            // SearchTimer
-            // 
-            this.SearchTimer.Interval = 1000;
-            this.SearchTimer.Tick += new System.EventHandler(this.SearchTimer_Tick);
-            // 
             // BufferPanel
             // 
             this.BufferPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BufferPanel.Controls.Add(this.BufferLabel);
             this.BufferPanel.Location = new System.Drawing.Point(0, 0);
             this.BufferPanel.Name = "BufferPanel";
-            this.BufferPanel.Size = new System.Drawing.Size(826, 589);
+            this.BufferPanel.Size = new System.Drawing.Size(825, 589);
             this.BufferPanel.TabIndex = 13;
+            // 
+            // BufferLabel
+            // 
+            this.BufferLabel.AutoSize = true;
+            this.BufferLabel.BackColor = System.Drawing.Color.Transparent;
+            this.BufferLabel.Location = new System.Drawing.Point(266, 214);
+            this.BufferLabel.Name = "BufferLabel";
+            this.BufferLabel.Size = new System.Drawing.Size(34, 13);
+            this.BufferLabel.TabIndex = 0;
+            this.BufferLabel.Text = "Reply";
+            // 
+            // ConnectTimer
+            // 
+            this.ConnectTimer.Interval = 1000;
+            this.ConnectTimer.Tick += new System.EventHandler(this.ConnectTimer_Tick);
+            // 
+            // SearchPanel
+            // 
+            this.SearchPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchPanel.BackColor = System.Drawing.Color.Black;
+            this.SearchPanel.Controls.Add(this.SearchLabel);
+            this.SearchPanel.Location = new System.Drawing.Point(0, 0);
+            this.SearchPanel.Name = "SearchPanel";
+            this.SearchPanel.Size = new System.Drawing.Size(825, 590);
+            this.SearchPanel.TabIndex = 14;
+            // 
+            // SearchLabel
+            // 
+            this.SearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchLabel.AutoSize = true;
+            this.SearchLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SearchLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.SearchLabel.Location = new System.Drawing.Point(313, 288);
+            this.SearchLabel.Name = "SearchLabel";
+            this.SearchLabel.Size = new System.Drawing.Size(84, 13);
+            this.SearchLabel.TabIndex = 0;
+            this.SearchLabel.Text = "Find a Pokémon";
+            // 
+            // ReceiveTimer
+            // 
+            this.ReceiveTimer.Interval = 1000;
+            this.ReceiveTimer.Tick += new System.EventHandler(this.ReceiveTimer_Tick);
+            // 
+            // BufferTimer
+            // 
+            this.BufferTimer.Interval = 1000;
+            this.BufferTimer.Tick += new System.EventHandler(this.BufferTimer_Tick);
+            // 
+            // IntroPanel
+            // 
+            this.IntroPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.IntroPanel.BackColor = System.Drawing.Color.Transparent;
+            this.IntroPanel.BackgroundImage = global::Project.Properties.Resources.IntroScreenMbed;
+            this.IntroPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.IntroPanel.Controls.Add(this.StartButton);
+            this.IntroPanel.Location = new System.Drawing.Point(0, 0);
+            this.IntroPanel.Name = "IntroPanel";
+            this.IntroPanel.Size = new System.Drawing.Size(824, 590);
+            this.IntroPanel.TabIndex = 2;
+            // 
+            // StartButton
+            // 
+            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StartButton.BackColor = System.Drawing.Color.Transparent;
+            this.StartButton.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.StartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StartButton.Location = new System.Drawing.Point(610, 433);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(178, 101);
+            this.StartButton.TabIndex = 3;
+            this.StartButton.Text = "Start";
+            this.StartButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.StartButton.UseVisualStyleBackColor = false;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // StartPanel
+            // 
+            this.StartPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StartPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.StartPanel.BackColor = System.Drawing.Color.Transparent;
+            this.StartPanel.BackgroundImage = global::Project.Properties.Resources.StartScreen;
+            this.StartPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.StartPanel.Controls.Add(this.TitleLabel);
+            this.StartPanel.Controls.Add(this.PlayButton);
+            this.StartPanel.Location = new System.Drawing.Point(0, 0);
+            this.StartPanel.Name = "StartPanel";
+            this.StartPanel.Size = new System.Drawing.Size(825, 590);
+            this.StartPanel.TabIndex = 10;
+            // 
+            // TitleLabel
+            // 
+            this.TitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TitleLabel.ForeColor = System.Drawing.Color.Red;
+            this.TitleLabel.Location = new System.Drawing.Point(297, 55);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(231, 76);
+            this.TitleLabel.TabIndex = 1;
+            this.TitleLabel.Text = "Game Title";
+            this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // PlayButton
+            // 
+            this.PlayButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.PlayButton.BackColor = System.Drawing.Color.Transparent;
+            this.PlayButton.FlatAppearance.BorderSize = 0;
+            this.PlayButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.PlayButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PlayButton.ForeColor = System.Drawing.Color.Red;
+            this.PlayButton.Location = new System.Drawing.Point(350, 444);
+            this.PlayButton.Name = "PlayButton";
+            this.PlayButton.Size = new System.Drawing.Size(124, 90);
+            this.PlayButton.TabIndex = 0;
+            this.PlayButton.Text = "Play";
+            this.PlayButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.PlayButton.UseVisualStyleBackColor = false;
+            this.PlayButton.Click += new System.EventHandler(this.PlayButton_Click);
             // 
             // QAPanel
             // 
@@ -121,7 +216,6 @@
             this.QAPanel.Controls.Add(this.QuestionLabel);
             this.QAPanel.Controls.Add(this.PokemonPictureBox);
             this.QAPanel.Controls.Add(this.Answer4Button);
-            this.QAPanel.Controls.Add(this.NewQuestionButton);
             this.QAPanel.Controls.Add(this.Answer2Button);
             this.QAPanel.Controls.Add(this.Answer3Button);
             this.QAPanel.Controls.Add(this.Answer1Button);
@@ -141,6 +235,19 @@
             this.QuestionLabel.TabIndex = 8;
             this.QuestionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // PokemonPictureBox
+            // 
+            this.PokemonPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PokemonPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.PokemonPictureBox.Location = new System.Drawing.Point(499, 55);
+            this.PokemonPictureBox.Name = "PokemonPictureBox";
+            this.PokemonPictureBox.Size = new System.Drawing.Size(258, 246);
+            this.PokemonPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PokemonPictureBox.TabIndex = 4;
+            this.PokemonPictureBox.TabStop = false;
+            // 
             // Answer4Button
             // 
             this.Answer4Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -159,21 +266,6 @@
             this.Answer4Button.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Answer4Button.UseVisualStyleBackColor = false;
             this.Answer4Button.Click += new System.EventHandler(this.Answer4Button_Click);
-            // 
-            // NewQuestionButton
-            // 
-            this.NewQuestionButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.NewQuestionButton.BackColor = System.Drawing.Color.Transparent;
-            this.NewQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.NewQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewQuestionButton.Location = new System.Drawing.Point(12, 252);
-            this.NewQuestionButton.Name = "NewQuestionButton";
-            this.NewQuestionButton.Size = new System.Drawing.Size(248, 90);
-            this.NewQuestionButton.TabIndex = 6;
-            this.NewQuestionButton.Text = "New Question";
-            this.NewQuestionButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.NewQuestionButton.UseVisualStyleBackColor = false;
-            this.NewQuestionButton.Click += new System.EventHandler(this.NewQuestionButton_Click);
             // 
             // Answer2Button
             // 
@@ -262,7 +354,7 @@
             this.EndingPanel.Controls.Add(this.EndingLabel);
             this.EndingPanel.Location = new System.Drawing.Point(0, 0);
             this.EndingPanel.Name = "EndingPanel";
-            this.EndingPanel.Size = new System.Drawing.Size(826, 589);
+            this.EndingPanel.Size = new System.Drawing.Size(825, 590);
             this.EndingPanel.TabIndex = 11;
             // 
             // EndButton
@@ -274,7 +366,7 @@
             this.EndButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.EndButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EndButton.ForeColor = System.Drawing.Color.Red;
-            this.EndButton.Location = new System.Drawing.Point(530, 495);
+            this.EndButton.Location = new System.Drawing.Point(529, 496);
             this.EndButton.Name = "EndButton";
             this.EndButton.Size = new System.Drawing.Size(189, 82);
             this.EndButton.TabIndex = 1;
@@ -291,7 +383,7 @@
             this.RestartButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.RestartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RestartButton.ForeColor = System.Drawing.Color.Red;
-            this.RestartButton.Location = new System.Drawing.Point(80, 495);
+            this.RestartButton.Location = new System.Drawing.Point(79, 496);
             this.RestartButton.Name = "RestartButton";
             this.RestartButton.Size = new System.Drawing.Size(189, 82);
             this.RestartButton.TabIndex = 1;
@@ -305,99 +397,11 @@
             this.EndingLabel.AutoSize = true;
             this.EndingLabel.BackColor = System.Drawing.Color.Transparent;
             this.EndingLabel.ForeColor = System.Drawing.Color.Red;
-            this.EndingLabel.Location = new System.Drawing.Point(332, 68);
+            this.EndingLabel.Location = new System.Drawing.Point(331, 68);
             this.EndingLabel.Name = "EndingLabel";
             this.EndingLabel.Size = new System.Drawing.Size(66, 13);
             this.EndingLabel.TabIndex = 0;
             this.EndingLabel.Text = "EndingLabel";
-            // 
-            // IntroPanel
-            // 
-            this.IntroPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.IntroPanel.BackColor = System.Drawing.Color.Transparent;
-            this.IntroPanel.BackgroundImage = global::Project.Properties.Resources.IntroScreenMbed;
-            this.IntroPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.IntroPanel.Controls.Add(this.StartButton);
-            this.IntroPanel.Location = new System.Drawing.Point(0, 0);
-            this.IntroPanel.Name = "IntroPanel";
-            this.IntroPanel.Size = new System.Drawing.Size(826, 590);
-            this.IntroPanel.TabIndex = 2;
-            // 
-            // StartButton
-            // 
-            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartButton.BackColor = System.Drawing.Color.Transparent;
-            this.StartButton.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.StartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StartButton.Location = new System.Drawing.Point(612, 433);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(178, 101);
-            this.StartButton.TabIndex = 3;
-            this.StartButton.Text = "Start";
-            this.StartButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.StartButton.UseVisualStyleBackColor = false;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
-            // 
-            // StartPanel
-            // 
-            this.StartPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.StartPanel.BackColor = System.Drawing.Color.Transparent;
-            this.StartPanel.BackgroundImage = global::Project.Properties.Resources.StartScreen;
-            this.StartPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.StartPanel.Controls.Add(this.TitleLabel);
-            this.StartPanel.Controls.Add(this.PlayButton);
-            this.StartPanel.Location = new System.Drawing.Point(0, 0);
-            this.StartPanel.Name = "StartPanel";
-            this.StartPanel.Size = new System.Drawing.Size(826, 590);
-            this.StartPanel.TabIndex = 10;
-            // 
-            // TitleLabel
-            // 
-            this.TitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.TitleLabel.ForeColor = System.Drawing.Color.Red;
-            this.TitleLabel.Location = new System.Drawing.Point(298, 55);
-            this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(231, 76);
-            this.TitleLabel.TabIndex = 1;
-            this.TitleLabel.Text = "Game Title";
-            this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // PlayButton
-            // 
-            this.PlayButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.PlayButton.BackColor = System.Drawing.Color.Transparent;
-            this.PlayButton.FlatAppearance.BorderSize = 0;
-            this.PlayButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.PlayButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.PlayButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlayButton.ForeColor = System.Drawing.Color.Red;
-            this.PlayButton.Location = new System.Drawing.Point(351, 444);
-            this.PlayButton.Name = "PlayButton";
-            this.PlayButton.Size = new System.Drawing.Size(124, 90);
-            this.PlayButton.TabIndex = 0;
-            this.PlayButton.Text = "Play";
-            this.PlayButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.PlayButton.UseVisualStyleBackColor = false;
-            this.PlayButton.Click += new System.EventHandler(this.PlayButton_Click);
-            // 
-            // PokemonPictureBox
-            // 
-            this.PokemonPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PokemonPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.PokemonPictureBox.Location = new System.Drawing.Point(499, 55);
-            this.PokemonPictureBox.Name = "PokemonPictureBox";
-            this.PokemonPictureBox.Size = new System.Drawing.Size(258, 246);
-            this.PokemonPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PokemonPictureBox.TabIndex = 4;
-            this.PokemonPictureBox.TabStop = false;
             // 
             // PokemonQA
             // 
@@ -405,26 +409,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(826, 589);
+            this.ClientSize = new System.Drawing.Size(825, 589);
+            this.Controls.Add(this.SearchPanel);
             this.Controls.Add(this.IntroPanel);
             this.Controls.Add(this.StartPanel);
             this.Controls.Add(this.QAPanel);
             this.Controls.Add(this.EndingPanel);
             this.Controls.Add(this.BufferPanel);
-            this.Controls.Add(this.SearchPanel);
             this.DoubleBuffered = true;
             this.Name = "PokemonQA";
             this.RightToLeftLayout = true;
             this.Text = "Pokemon";
             this.Load += new System.EventHandler(this.PokemonQA_Load);
+            this.BufferPanel.ResumeLayout(false);
+            this.BufferPanel.PerformLayout();
             this.SearchPanel.ResumeLayout(false);
             this.SearchPanel.PerformLayout();
-            this.QAPanel.ResumeLayout(false);
-            this.EndingPanel.ResumeLayout(false);
-            this.EndingPanel.PerformLayout();
             this.IntroPanel.ResumeLayout(false);
             this.StartPanel.ResumeLayout(false);
+            this.QAPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).EndInit();
+            this.EndingPanel.ResumeLayout(false);
+            this.EndingPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -439,7 +445,6 @@
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.Label TimerLabel;
         private System.Windows.Forms.Label QuestionLabel;
-        private System.Windows.Forms.Button NewQuestionButton;
         private System.Windows.Forms.Label LostPokemonLabel;
         private PanelDoubleBuffered StartPanel;
         private System.Windows.Forms.Button PlayButton;
@@ -451,11 +456,13 @@
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button EndButton;
         private System.Windows.Forms.Button RestartButton;
-        private System.Windows.Forms.Panel SearchPanel;
-        private System.Windows.Forms.Label SearchTimerLabel;
-        private System.Windows.Forms.Timer SearchTimer;
-        private System.Windows.Forms.Button ActAsInput;
         private System.Windows.Forms.Panel BufferPanel;
+        private System.Windows.Forms.Timer ConnectTimer;
+        private System.Windows.Forms.Panel SearchPanel;
+        private System.Windows.Forms.Label SearchLabel;
+        private System.Windows.Forms.Timer ReceiveTimer;
+        private System.Windows.Forms.Label BufferLabel;
+        private System.Windows.Forms.Timer BufferTimer;
     }
 }
 
