@@ -100,6 +100,9 @@ namespace Project
             listPanel.Add(QAPanel);
             listPanel.Add(EndingPanel);
             //On startup → Bring StartPanel to front
+
+            StartPanel.BackgroundImage = (Image)Properties.Resources.ResourceManager.GetObject("StartScreen");
+            IntroPanel.BackgroundImage = (Image)Properties.Resources.ResourceManager.GetObject("IntroScreen");
             listPanel[0].BringToFront();
         }
 
