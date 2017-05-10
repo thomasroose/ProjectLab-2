@@ -7,90 +7,72 @@ void Rotate(int arr[], int d, int n);
 void RotatebyOne(int arr[], int n);
 
 C12832 lcd(p5, p7, p6, p8, p11);
-DigitalIn input(p21);
-Timer t; // timer used to find the frequency of the received data
-int frequency = 100000; // must be way higher than the frequency with which data is send.
-int counter = 0; //transition counter
-int sample = 0; // initialising sample to zero,used to temporary store the measured period
-int period = 1000000; // initialising period to 1 second,used to temporary store the smallest measured period
-int measuredPeriod = 0; // initialising the actually received period
-bool synchronisation = true; // boolean used to stop looking for the received period
-bool counting = false;// boolean to see if you're alraedy counting
+DigitalOut led1 (LED1);
+DigitalOut led2 (LED2);
+DigitalIn input1(p21);
+DigitalIn input2(p22);
+DigitalIn input3(p23);
+int frequency =2000; // must be way higher than the frequency with which data is send.
+int period = 1000000/frequency;
 int data [42]; // received data
 int message[16]; // actual message send
+int pollArray[10]; //polling for the start of the data
+bool startDataFound;
+int counter;
 bool startHammingFound = false; //boolean used to determine the first bit of the message
 int c,c1,c2,c3,c4,c5; // used for the hamming decoding
 int DigitalNew; //used to be able to detect a transition
 int DigitalOld; //used to be able to detect a transition
 
-void poll() // Method to get the period of the dataeived data
+void poll()
 {
-  DigitalNew = 0;
-  DigitalOld = 0;
-
-
-  while(synchronisation)
+  while(startDataFound != true)
   {
-    if (DigitalOld == DigitalNew) //No transition
+    counter = 0;
+    for (size_t p = 0; p < 10; p++)
     {
-      wait_us(1000000/frequency); //wait a bit
-      DigitalNew = input.read();    //read the input
+      if  (input1.read()== 1)
+      {counter++;}
+      else
+      {break;}
+      wait_us(period/5);
     }
-    else // transition happened
+    if (counter == 10)
     {
-      counter ++; //transition counter goes up by 1
-      if (counting == true) // you're already counting (transition has happened before)
-      {
-        t.stop(); // stops the timer
-        sample = t.read_us(); // reads the value of the timer and stores it in sample
-        t.reset(); // resets the timer
-        if (sample < period)
-        {
-          period = sample; // lowest period = frequency
-        }
-        counting = false; //timer has stopped counting
-        DigitalOld = DigitalNew;
-        DigitalNew = input.read();
-      }
-      else // timer hasn't started counting yet
-      {
-        t.start(); //starts timer
-        counting = true; // boolean to indicate timer has started
-        DigitalOld = DigitalNew;
-        DigitalNew = input.read();
-      }
-    }
-    if (counter > 21) // goes through half of the data to see if there are transistions
-    {
-      synchronisation = false; // boolean to indicate we have found the period
-      measuredPeriod = period; // period that was found
-      lcd.cls();
-      lcd.locate(1,0);
-      lcd.printf("Period: %d", measuredPeriod);
-      lcd.printf("Frequency: %d", 1000000/measuredPeriod);
+    startDataFound = true;
+    led1 =true;
     }
   }
 }
 
 void decode() // decoding the received data to the actual message
 {
-
   DigitalOld = 0;
   DigitalNew = 0;
   int n = 0;// used in for loops
 
-
   while (DigitalOld == DigitalNew) // no transistion
   {
-    wait_us(1000000/frequency); // wait a bit
-    DigitalNew = input.read(); // read the input
+    wait_us(1000000/(10*frequency)); // wait a bit
+    DigitalNew = ~(input1.read()); // read the input
   }
+  wait_us (period*1.25);
 
-  // wait_us (measuredPeriod/2)
   for (int i = 0; i < 42; i++) // filling up the data array
   {
-    data[i] = input.read(); // read the bit value and store this in data array
-    wait_us(measuredPeriod); //
+    //data[i] = ~(input1.read()); // read the bit value and store this in data array
+
+    int newData = input1.read();
+
+    if(newData>=1){
+        data[i] = 0;
+    }else{
+        data[i] = 1;
+        }
+
+
+    wait_us(period); //
+
   }
 
   while(startHammingFound == false) // look for the start of the message
@@ -167,7 +149,7 @@ void decode() // decoding the received data to the actual message
   // message[14]=data[19];
   // message[15]=data[20];
 
-  lcd.cls();
+lcd.cls();
   lcd.locate(1,0);
   for (size_t l = 0; l < 16; l++)
   {

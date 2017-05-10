@@ -6,13 +6,13 @@ class RGB
 
 {
 public:
-    RGBLed(PinName redpin, PinName greenpin, PinName bluepin);
-    void write(float red,float green, float blue);
+    RGB(PinName redpin, PinName greenpin, PinName bluepin);
+    void write(int red,int green, int blue);
 
 private:
-    PwmOut _redpin;
-    PwmOut _greenpin;
-    PwmOut _bluepin;
+    DigitalOut _redpin;
+    DigitalOut _greenpin;
+    DigitalOut _bluepin;
 
 };
 
