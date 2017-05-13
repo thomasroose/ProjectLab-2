@@ -24,14 +24,17 @@ namespace Project
         private static int wrongAnswers = 0;
         private static int correctAnswers = 0;
         const int gameTimerStartValue = 10;
+        const int bufferTimerStartValue = 3;
         const int timerStartValue = 1;
 
         Question question;
         Random rnd = new Random();
         int timeLeft, connectTimeLeft, receiveTimeLeft, bufferTimeLeft;
-        int randomPokemon, pickQuestion;
+        int randomPokemon, pickQuestion, receivedNumber;
         int numberToWin = 4;
         string endScreenImage = "EndingScreen";
+
+        int light;
 
         Communication com = new Communication();
         Packet packet = new Packet(0);
@@ -136,20 +139,98 @@ namespace Project
        ________________________________________________________*/
         private void StartButton_Click(object sender, EventArgs e)
         {
-            // Bring SearchPanel to front; Connect to Mbed
+            // Bring SearchPanel to front; Let application pick a color; Connect to Mbed
             listPanel[2].BringToFront();
+            PickLight();
             connectTimeLeft = timerStartValue;
             ConnectTimer.Start();
         }
 
 
-        /*Components on SearchPanel (Panel 2)
+        /*Functions on SearchPanel (Panel 2)
         ________________________________________________________*/
-        private void ActAsInput_Click(object sender, EventArgs e)
+        private void PickLight()
         {
-            listPanel[3].BringToFront();
-            NewQuestion();
+            light = rnd.Next(1, 4); //Picks light between 1-3 (Red, Green, Blue)
+            ChangeFontLight();
         }
+        private void ChangeFontLight()
+        {
+            switch (light) //Changes font of text to matching color
+            {
+                case 1:
+                    {
+                        SearchLabel.ForeColor = Color.Red;
+                        break;
+                    }
+                case 2:
+                    {
+                        SearchLabel.ForeColor = Color.Green;
+                        break;
+                    }
+                case 3:
+                    {
+                        SearchLabel.ForeColor = Color.Blue;
+                        break;
+                    }
+                default:
+                    {
+                        SearchLabel.ForeColor = Color.Beige;
+                        break;
+                    }
+            }
+        }
+        private void CheckLights()
+        {
+            if (light == receivedNumber) //If player went to correct Mbed → Generate question; 
+            {
+                listPanel[3].BringToFront();
+                NewQuestion();
+            }
+            else //If player went to wrong Mbed → Restart; 
+            {
+                BufferLabel.Text = "Wrong color! Please go to the right color";
+                listPanel[4].BringToFront();
+                bufferTimeLeft = timerStartValue;
+                BufferTimer.Start();
+            }
+        }
+        private void ConnectMbed()
+        {
+            com.connect();
+            ReceiveData();
+        }
+        private void ConnectTimer_Tick(object sender, EventArgs e)
+        {     
+            if (connectTimeLeft > 0) // Timer used to let components adjust before going into blocking connect
+            {
+                connectTimeLeft--;
+            }
+            else
+            {
+                ConnectTimer.Stop();
+                ConnectMbed();
+            }
+        }
+        private void ReceiveData()
+        {
+            com.receive();
+            receivedNumber = packet.getPokemon();
+            CheckLights();
+        }
+        private void ReceiveTimer_Tick(object sender, EventArgs e)
+        {
+            if (receiveTimeLeft > 0) // Timer used to let components adjust before going into blocking receive
+            {
+                receiveTimeLeft--;
+            }
+            else
+            {
+                ReceiveTimer.Stop();
+                ReceiveData();
+            }
+        }
+
 
         /*Components on QAPanel (Panel 3)
         ________________________________________________________*/
@@ -200,14 +281,17 @@ namespace Project
                 GameTimer.Stop();
             }
         }
-        
+
 
         /*Functions to generate new Question
         ________________________________________________________*/
         private void NewQuestion()
         {
             ClearButtons(); //Reset text & image of AnswerButtons & TimerLabel
-            //randomPokemon = rnd.Next(1,152);
+            for (int i = 0; i < receivedNumber; i++)
+            {
+                randomPokemon = rnd.Next(1, 152);
+            }
             pickQuestion = rnd.Next(1, 3);
             if (pickQuestion == 1)
             {
@@ -346,11 +430,11 @@ namespace Project
             }
             else
             {
-                //set some text to gj u got the pokemon but theres X more or something
+                //Display message (correct answer)
                 //BufferPanel.BackgroundImage = //some relevant image
                 BufferLabel.Text = "You've answered correctly!";
                 listPanel[4].BringToFront();
-                bufferTimeLeft = timerStartValue;
+                bufferTimeLeft = bufferTimerStartValue;
                 BufferTimer.Start();
             }
         }
@@ -368,35 +452,42 @@ namespace Project
             }
             else
             {
-                //set some text to gj u got the pokemon but theres X more or something
+                //Display message (wrong answer)
                 //BufferPanel.BackgroundImage = //some relevant image
                 LostPokemonLabel.Text = "You've lost " + wrongAnswers + " Pokémon";
                 BufferLabel.Text = "Wrong answer!";
                 listPanel[4].BringToFront();
-                bufferTimeLeft = timerStartValue;
+                bufferTimeLeft = bufferTimerStartValue;
                 BufferTimer.Start();
             }
         }
-        private void ConnectMbed()
-        {
-            com.connect();
-            ReceiveData();
-        }
-        private void ReceiveData()
-        {
-            com.receive();           
-            randomPokemon = packet.getPokemon();
-            listPanel[3].BringToFront();
-            NewQuestion();
-        }
+
+
+        /*Components on BufferPanel (Panel 5)
+       ________________________________________________________*/
+        private void BufferTimer_Tick(object sender, EventArgs e)
+            {
+                if (bufferTimeLeft > 0) // Timer used to let stay on BufferPanel for a few seconds
+            {
+                    bufferTimeLeft--;
+                }
+                else
+                {
+                    BufferTimer.Stop();
+                    FinishBufferPanel();
+                }
+            }
         private void FinishBufferPanel()
         {
+            PickLight();
             listPanel[2].BringToFront();
             receiveTimeLeft = timerStartValue;
             ReceiveTimer.Start();
         }
 
-        /*Components on EndingPanel (Panel 5)
+
+
+        /*Components on EndingPanel (Panel 6)
         ________________________________________________________*/
         private void RestartButton_Click(object sender, EventArgs e)
         {
@@ -405,53 +496,12 @@ namespace Project
             receiveTimeLeft = timerStartValue;
             ReceiveTimer.Start();
         }
-
-        private void BufferTimer_Tick(object sender, EventArgs e)
-        {
-            if (bufferTimeLeft > 0)
-            {
-                bufferTimeLeft--;
-            }
-            else
-            {
-                BufferTimer.Stop();
-                FinishBufferPanel();
-            }
-        }
-
-        private void ReceiveTimer_Tick(object sender, EventArgs e)
-        {
-            if (receiveTimeLeft > 0)
-            {
-                receiveTimeLeft--;
-            }
-            else
-            {
-                ReceiveTimer.Stop();
-                ReceiveData();
-            }
-        }
-
-        private void ConnectTimer_Tick(object sender, EventArgs e)
-        {
-            if (connectTimeLeft > 0)
-            {
-                connectTimeLeft--;
-            }
-            else
-            {
-                ConnectTimer.Stop();
-                ConnectMbed();
-            }
-        }
-
         private void EndButton_Click(object sender, EventArgs e)
         {
             Enabled = false;
             System.Threading.Thread.Sleep(1000);
             Application.Exit();
         }
-
         /*Used to reset values when restarting game
         ________________________________________________________*/
         private void ResetValues()

@@ -82,9 +82,10 @@
             // 
             // BufferLabel
             // 
+            this.BufferLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BufferLabel.AutoSize = true;
             this.BufferLabel.BackColor = System.Drawing.Color.Transparent;
-            this.BufferLabel.Location = new System.Drawing.Point(266, 214);
+            this.BufferLabel.Location = new System.Drawing.Point(282, 244);
             this.BufferLabel.Name = "BufferLabel";
             this.BufferLabel.Size = new System.Drawing.Size(34, 13);
             this.BufferLabel.TabIndex = 0;
@@ -109,15 +110,14 @@
             // 
             // SearchLabel
             // 
-            this.SearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SearchLabel.AutoSize = true;
             this.SearchLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SearchLabel.Font = new System.Drawing.Font("Pokemon Hollow", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchLabel.ForeColor = System.Drawing.Color.Maroon;
-            this.SearchLabel.Location = new System.Drawing.Point(313, 288);
+            this.SearchLabel.Location = new System.Drawing.Point(287, 244);
             this.SearchLabel.Name = "SearchLabel";
-            this.SearchLabel.Size = new System.Drawing.Size(84, 13);
+            this.SearchLabel.Size = new System.Drawing.Size(238, 77);
             this.SearchLabel.TabIndex = 0;
             this.SearchLabel.Text = "Find a Pokémon";
             // 

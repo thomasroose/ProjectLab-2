@@ -61,12 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomTextBox.Designer.cs">
-      <DependentUpon>CustomTextBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="PanelDoubleBuffered.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -90,9 +84,6 @@
     </Compile>
     <Compile Include="Question.cs" />
     <Compile Include="TypeQuestion.cs" />
-    <EmbeddedResource Include="CustomTextBox.resx">
-      <DependentUpon>CustomTextBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PanelDoubleBuffered.resx">
       <DependentUpon>PanelDoubleBuffered.cs</DependentUpon>
     </EmbeddedResource>
