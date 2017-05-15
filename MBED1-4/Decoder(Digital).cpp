@@ -3,6 +3,7 @@
 
 void poll();
 void decode();
+int GetID();
 void Rotate(int arr[], int d, int n);
 void RotatebyOne(int arr[], int n);
 
@@ -16,7 +17,6 @@ int frequency =2000; // must be way higher than the frequency with which data is
 int period = 1000000/frequency;
 int data [42]; // received data
 int message[16]; // actual message send
-int pollArray[10]; //polling for the start of the data
 bool startDataFound;
 int counter;
 bool startHammingFound = false; //boolean used to determine the first bit of the message
@@ -31,7 +31,7 @@ void poll()
     counter = 0;
     for (size_t p = 0; p < 10; p++)
     {
-      if  (input1.read()== 1)
+      if  (input1.read()== 0)
       {counter++;}
       else
       {break;}
@@ -54,9 +54,9 @@ void decode() // decoding the received data to the actual message
   while (DigitalOld == DigitalNew) // no transistion
   {
     wait_us(1000000/(10*frequency)); // wait a bit
-    DigitalNew = ~(input1.read()); // read the input
+    DigitalNew = (input1.read()); // read the input
   }
-  wait_us (period*1.25);
+  wait_us (period+50);
 
   for (int i = 0; i < 42; i++) // filling up the data array
   {
@@ -157,6 +157,34 @@ lcd.cls();
   }
 }
 
+int GetID()
+{
+  int ID =0;
+  if(message[8]==1)
+  {
+    if(message[9]==1)
+    {
+      ID=4;
+    }
+    else
+    {
+      ID=3;
+    }
+  }
+  else
+  {
+    if(message[9]==1)
+    {
+      ID=2;
+    }
+    else
+    {
+      ID=1;
+    }
+  }
+  return ID;
+}
+
 void Rotate(int arr[], int d, int n)
 {
   int i;
@@ -177,4 +205,7 @@ int main()
 {
   poll();
   decode();
+  lcd.cls();
+  lcd.locate(1,0);
+  lcd.printf("%d",GetID());
 }

@@ -11,7 +11,7 @@ const int LENGTH = 21;
 int data[LENGTH];
 int ID;
 int light;
-int frequency = 1000;
+int frequency = 2000;
 C12832 lcd(p5, p7, p6, p8, p11);
 RGB RGBled(p23,p24,p25);
 BusIn joystick(p12,p13,p15,p16);
@@ -55,7 +55,7 @@ int main()
             fillArray();
             while(true)
             {
-              RGBled.write(0,0,0);
+              RGBled.write(1,0,0);
               wait_us(2*(1000000/frequency));
               OutputData();
             }
@@ -71,7 +71,7 @@ int main()
             fillArray();
             while(true)
             {
-              RGBled.write(0,0,0);
+              RGBled.write(0,1,0);
               wait_us(2*(1000000/frequency));
               OutputData();
             }
@@ -87,7 +87,7 @@ int main()
             fillArray();
             while(true)
             {
-              RGBled.write(0,0,0);
+              RGBled.write(0,0,1);
               wait_us(2*(1000000/frequency));
               OutputData();
             }
@@ -103,7 +103,7 @@ int main()
             fillArray();
             while(true)
             {
-              RGBled.write(0,0,0);
+              RGBled.write(1,1,1);
               wait_us(2*(1000000/frequency));
               OutputData();
             }
@@ -168,9 +168,9 @@ void OutputData()
     case 1:
     {
 
-      RGBled.write(0,0,0);
-      wait_us(1000000/frequency/2);
       RGBled.write(1,0,0);
+      wait_us(1000000/frequency/2);
+      RGBled.write(0,0,0);
       wait_us(1000000/frequency/2);
 
       for (i=0;i<LENGTH;i++)
@@ -196,25 +196,25 @@ void OutputData()
     case 2:
     {
 
-      RGBled.write(1,1,1);
+      RGBled.write(0,1,0);
       wait_us(1000000/frequency/2);
-      RGBled.write(1,0,1);
+      RGBled.write(0,0,0);
       wait_us(1000000/frequency/2);
 
       for (i=0;i<LENGTH;i++)
       {
         if(data[i]==1)      //transition 0 => 1
         {
-          RGBled.write(1,1,1);
+          RGBled.write(0,0,0);
           wait_us(1000000/frequency/2);
-          RGBled.write(1,0,1);
+          RGBled.write(0,1,0);
           wait_us(1000000/frequency/2);
         }
         else               //transition 1 => 0
         {
-          RGBled.write(1,0,1);
+          RGBled.write(0,1,0);
           wait_us(1000000/frequency/2);
-          RGBled.write(1,1,1);
+          RGBled.write(0,0,0);
           wait_us(1000000/frequency/2);
         }
       }
@@ -223,25 +223,25 @@ void OutputData()
     case 3:
     {
 
-      RGBled.write(1,1,1);
+      RGBled.write(0,0,1);
       wait_us(1000000/frequency/2);
-      RGBled.write(1,1,0);
+      RGBled.write(0,0,0);
       wait_us(1000000/frequency/2);
 
       for (i=0;i<LENGTH;i++)
       {
         if(data[i]==1)      //transition 0 => 1
         {
-          RGBled.write(1,1,1);
+          RGBled.write(0,0,0);
           wait_us(1000000/frequency/2);
-          RGBled.write(1,1,0);
+          RGBled.write(0,0,1);
           wait_us(1000000/frequency/2);
         }
         else               //transition 1 => 0
         {
-          RGBled.write(1,1,0);
+          RGBled.write(0,0,1);
           wait_us(1000000/frequency/2);
-          RGBled.write(1,1,1);
+          RGBled.write(0,0,0);
           wait_us(1000000/frequency/2);
         }
       }
@@ -259,16 +259,16 @@ void OutputData()
       {
         if(data[i]==1)      //transition 0 => 1
         {
-          RGBled.write(1,1,1);
-          wait_us(1000000/frequency/2);
           RGBled.write(0,0,0);
+          wait_us(1000000/frequency/2);
+          RGBled.write(1,1,1);
           wait_us(1000000/frequency/2);
         }
         else               //transition 1 => 0
         {
-          RGBled.write(0,0,0);
-          wait_us(1000000/frequency/2);
           RGBled.write(1,1,1);
+          wait_us(1000000/frequency/2);
+          RGBled.write(0,0,0);
           wait_us(1000000/frequency/2);
         }
       }
