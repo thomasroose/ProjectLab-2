@@ -32,6 +32,7 @@
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.QAPanel = new Project.PanelDoubleBuffered();
             this.QuestionLabel = new System.Windows.Forms.Label();
+            this.PokemonPictureBox = new System.Windows.Forms.PictureBox();
             this.Answer4Button = new System.Windows.Forms.Button();
             this.NewQuestionButton = new System.Windows.Forms.Button();
             this.Answer2Button = new System.Windows.Forms.Button();
@@ -49,13 +50,12 @@
             this.StartPanel = new Project.PanelDoubleBuffered();
             this.TitleLabel = new System.Windows.Forms.Label();
             this.PlayButton = new System.Windows.Forms.Button();
-            this.PokemonPictureBox = new System.Windows.Forms.PictureBox();
             this.QAPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).BeginInit();
             this.EndingPanel.SuspendLayout();
             this.IntroPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfPokemonComp)).BeginInit();
             this.StartPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // GameTimer
@@ -92,6 +92,19 @@
             this.QuestionLabel.Size = new System.Drawing.Size(498, 90);
             this.QuestionLabel.TabIndex = 8;
             this.QuestionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PokemonPictureBox
+            // 
+            this.PokemonPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PokemonPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.PokemonPictureBox.Location = new System.Drawing.Point(499, 55);
+            this.PokemonPictureBox.Name = "PokemonPictureBox";
+            this.PokemonPictureBox.Size = new System.Drawing.Size(258, 246);
+            this.PokemonPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PokemonPictureBox.TabIndex = 4;
+            this.PokemonPictureBox.TabStop = false;
             // 
             // Answer4Button
             // 
@@ -342,7 +355,7 @@
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(231, 76);
             this.TitleLabel.TabIndex = 1;
-            this.TitleLabel.Text = "Game Title";
+            this.TitleLabel.Text = "Pokémon";
             this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PlayButton
@@ -363,19 +376,6 @@
             this.PlayButton.UseVisualStyleBackColor = false;
             this.PlayButton.Click += new System.EventHandler(this.PlayButton_Click);
             // 
-            // PokemonPictureBox
-            // 
-            this.PokemonPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PokemonPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.PokemonPictureBox.Location = new System.Drawing.Point(499, 55);
-            this.PokemonPictureBox.Name = "PokemonPictureBox";
-            this.PokemonPictureBox.Size = new System.Drawing.Size(258, 246);
-            this.PokemonPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PokemonPictureBox.TabIndex = 4;
-            this.PokemonPictureBox.TabStop = false;
-            // 
             // PokemonQA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,22 +383,22 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(826, 589);
-            this.Controls.Add(this.IntroPanel);
             this.Controls.Add(this.StartPanel);
             this.Controls.Add(this.QAPanel);
             this.Controls.Add(this.EndingPanel);
+            this.Controls.Add(this.IntroPanel);
             this.DoubleBuffered = true;
             this.Name = "PokemonQA";
             this.RightToLeftLayout = true;
             this.Text = "Pokemon";
             this.Load += new System.EventHandler(this.PokemonQA_Load);
             this.QAPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).EndInit();
             this.EndingPanel.ResumeLayout(false);
             this.EndingPanel.PerformLayout();
             this.IntroPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfPokemonComp)).EndInit();
             this.StartPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PokemonPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

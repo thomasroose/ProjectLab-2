@@ -92,7 +92,7 @@ namespace Project
                 {
                     number = rnd.Next(1, 152);
                     wrongAnswer = names[number];
-                    if (!Contains(currentNames, wrongAnswer)) break;
+                    if (!Contains(currentNames, wrongAnswer, i)) break;
                 }
                 currentNames[i] = wrongAnswer;
             }
@@ -107,27 +107,27 @@ namespace Project
         public string[] GetTypes()
         {
             currentTypes = new string[4];
-            int number = rnd.Next(1, 43);
             currentTypes[0] = GetCorrectType();
+            int number = rnd.Next(1, 43);
             string wrongAnswer = typeList[number];
             for(int i = 1; i < 4; i++)
             {
                 while(true)
                 {
-                    number = rnd.Next(1, 9);
+                    number = rnd.Next(1, 43);
                     wrongAnswer = typeList[number];
-                    if (!Contains(currentTypes, wrongAnswer)) break;
+                    if (!Contains(currentTypes, wrongAnswer, i)) break;
                 }                
                 currentTypes[i] = wrongAnswer;
             }
             return currentTypes;
         }
 
-        public bool Contains(string[] array, string value)
+        public bool Contains(string[] array, string value,int i)
         {
-            for(int i = 0; i < array.Length; i++)
+            for(int j = 0; j < i; j++)
             {
-                if (array[i] == value) return true;
+                if (array[j].Equals(value)) return true;
             }
             return false;
         }
