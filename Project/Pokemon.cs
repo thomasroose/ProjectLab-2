@@ -83,9 +83,9 @@ namespace Project
         public string[] GetNames()
         {
             currentNames = new string[4];
-            int number = rnd.Next(1, 152);
             currentNames[0] = GetCorrectName();
-            string wrongAnswer = names[number];
+            int number = rnd.Next(1, 152);
+            string wrongAnswer;
             for (int i = 1; i < 4; i++)
             {
                 while (true)
@@ -109,7 +109,7 @@ namespace Project
             currentTypes = new string[4];
             currentTypes[0] = GetCorrectType();
             int number = rnd.Next(1, 43);
-            string wrongAnswer = typeList[number];
+            string wrongAnswer;
             for(int i = 1; i < 4; i++)
             {
                 while(true)
