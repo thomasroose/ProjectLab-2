@@ -74,6 +74,7 @@
             this.BufferPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.BufferPanel.BackColor = System.Drawing.Color.DimGray;
             this.BufferPanel.Controls.Add(this.BufferLabel);
             this.BufferPanel.Location = new System.Drawing.Point(0, 0);
             this.BufferPanel.Name = "BufferPanel";
@@ -85,6 +86,7 @@
             this.BufferLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BufferLabel.AutoSize = true;
             this.BufferLabel.BackColor = System.Drawing.Color.Transparent;
+            this.BufferLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.BufferLabel.Location = new System.Drawing.Point(282, 244);
             this.BufferLabel.Name = "BufferLabel";
             this.BufferLabel.Size = new System.Drawing.Size(34, 13);
@@ -185,7 +187,7 @@
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(231, 76);
             this.TitleLabel.TabIndex = 1;
-            this.TitleLabel.Text = "Game Title";
+            this.TitleLabel.Text = "Pokémon";
             this.TitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // PlayButton
