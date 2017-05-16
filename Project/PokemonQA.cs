@@ -151,7 +151,7 @@ namespace Project
         ________________________________________________________*/
         private void PickLight()
         {
-            light = rnd.Next(1, 4); //Picks light between 1-3 (Red, Green, Blue)
+            light = rnd.Next(1, 5); //Picks light between 1-3 (Red, Green, Blue, White)
             ChangeFontLight();
         }
         private void ChangeFontLight()
@@ -173,9 +173,13 @@ namespace Project
                         SearchLabel.ForeColor = Color.Blue;
                         break;
                     }
+                case 4:
+                    {
+                        SearchLabel.ForeColor = Color.White;
+                        break;
+                    }
                 default:
                     {
-                        SearchLabel.ForeColor = Color.Beige;
                         break;
                     }
             }
