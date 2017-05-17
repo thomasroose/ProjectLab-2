@@ -186,7 +186,6 @@ namespace Project
         private void CheckLights()
         {
             Console.WriteLine("light = " + light);
-            Console.WriteLine("receivedNumber = " + receivedNumber);
             if (light == receivedNumber) //If player went to correct Mbed → Generate question; 
             {
                 listPanel[3].BringToFront();
@@ -221,7 +220,6 @@ namespace Project
         {
             com.receive();
             receivedNumber = com.getPokemonFromPacket();
-            Console.WriteLine("receivedNumber in ReceiveData = " + receivedNumber);
             CheckLights();
         }
         private void ReceiveTimer_Tick(object sender, EventArgs e)
@@ -285,6 +283,7 @@ namespace Project
             else
             {
                 GameTimer.Stop();
+                CheckEnding();
             }
         }
 
@@ -461,7 +460,7 @@ namespace Project
                 //Display message (wrong answer)
                 //BufferPanel.BackgroundImage = //some relevant image
                 LostPokemonLabel.Text = "You've lost " + wrongAnswers + " Pokémon";
-                BufferLabel.Text = "Wrong answer!";
+                BufferLabel.Text = "Try Again!";
                 listPanel[4].BringToFront();
                 bufferTimeLeft = bufferTimerStartValue;
                 BufferTimer.Start();

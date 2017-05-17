@@ -83,15 +83,16 @@
             // 
             // BufferLabel
             // 
-            this.BufferLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BufferLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.BufferLabel.AutoSize = true;
             this.BufferLabel.BackColor = System.Drawing.Color.Transparent;
             this.BufferLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.BufferLabel.Location = new System.Drawing.Point(282, 244);
+            this.BufferLabel.Location = new System.Drawing.Point(247, 249);
             this.BufferLabel.Name = "BufferLabel";
             this.BufferLabel.Size = new System.Drawing.Size(34, 13);
             this.BufferLabel.TabIndex = 0;
             this.BufferLabel.Text = "Reply";
+            this.BufferLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ConnectTimer
             // 
@@ -412,12 +413,12 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(825, 589);
+            this.Controls.Add(this.BufferPanel);
             this.Controls.Add(this.SearchPanel);
             this.Controls.Add(this.IntroPanel);
             this.Controls.Add(this.StartPanel);
             this.Controls.Add(this.QAPanel);
             this.Controls.Add(this.EndingPanel);
-            this.Controls.Add(this.BufferPanel);
             this.DoubleBuffered = true;
             this.Name = "PokemonQA";
             this.RightToLeftLayout = true;
