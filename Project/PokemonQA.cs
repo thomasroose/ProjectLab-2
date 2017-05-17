@@ -37,7 +37,6 @@ namespace Project
         int light;
 
         Communication com = new Communication();
-        Packet packet = new Packet(0);
 
         public PokemonQA()
         {
@@ -151,7 +150,7 @@ namespace Project
         ________________________________________________________*/
         private void PickLight()
         {
-            light = rnd.Next(1, 5); //Picks light between 1-3 (Red, Green, Blue, White)
+            light = rnd.Next(1, 5); //Picks light between 1-4 (Red, Green, Blue, White)
             ChangeFontLight();
         }
         private void ChangeFontLight()
@@ -186,6 +185,8 @@ namespace Project
         }
         private void CheckLights()
         {
+            Console.WriteLine("light = " + light);
+            Console.WriteLine("receivedNumber = " + receivedNumber);
             if (light == receivedNumber) //If player went to correct Mbed → Generate question; 
             {
                 listPanel[3].BringToFront();
@@ -219,7 +220,8 @@ namespace Project
         private void ReceiveData()
         {
             com.receive();
-            receivedNumber = packet.getPokemon();
+            receivedNumber = com.getPokemonFromPacket();
+            Console.WriteLine("receivedNumber in ReceiveData = " + receivedNumber);
             CheckLights();
         }
         private void ReceiveTimer_Tick(object sender, EventArgs e)

@@ -80,6 +80,11 @@ namespace TCP
             }
         }
 
+        public int getPokemonFromPacket()
+        {
+            return packet.getPokemon();
+        }
+
 
         public void send()
         {
