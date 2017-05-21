@@ -76,7 +76,10 @@ namespace Project
             return names[id];
         }
 
-        public string[] GetNames()
+        /* returns array of 4 Pokemon names
+         * array[0] is correct answer array[1-3] are random wrong answers
+         */
+        public string[] GetNames() 
         {
             currentNames = new string[4];
             currentNames[0] = GetCorrectName();
@@ -98,8 +101,11 @@ namespace Project
         public string GetCorrectType()
         {
             return typeList[types[id]];
-        }       
+        }
 
+        /* returns array of 4 Pokemon types
+         * array[0] is correct answer array[1-3] are random wrong answers
+         */
         public string[] GetTypes()
         {
             currentTypes = new string[4];
@@ -119,6 +125,8 @@ namespace Project
             return currentTypes;
         }
 
+        /*Used to check whether array already contains a certain value
+         */
         public bool Contains(string[] array, string value)
         {
             for(int i = 0; i < array.Length; i++)

@@ -14,10 +14,10 @@ namespace Project
         public NameQuestion(int pokemonID)
         {
             
-            pokemon = new Pokemon(pokemonID);
-            answers = pokemon.GetNames();
-            correctAnswer = answers[0];
-            Shuffle(answers);
+            pokemon = new Pokemon(pokemonID);   //Create new Pokemon
+            answers = pokemon.GetNames();       //fill up array with answers
+            correctAnswer = answers[0];         //store correct answer
+            Shuffle(answers);                   //shuffle array
 
         }
 

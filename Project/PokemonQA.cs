@@ -23,19 +23,18 @@ namespace Project
 
         private static int wrongAnswers = 0;
         private static int correctAnswers = 0;
-        const int gameTimerStartValue = 10;
+        const int gameTimerStartValue = 15;
         const int bufferTimerStartValue = 3;
         const int timerStartValue = 1;
+        int numberToWin = 4;
 
         Question question;
         Random rnd = new Random();
         int timeLeft, connectTimeLeft, receiveTimeLeft, bufferTimeLeft;
         int randomPokemon, pickQuestion, receivedNumber;
-        int numberToWin = 4;
-        string endScreenImage = "EndingScreen";
-
         int light;
-
+        string endScreenImage = "EndingScreen";
+       
         Communication com = new Communication();
 
         public PokemonQA()

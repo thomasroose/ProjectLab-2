@@ -13,10 +13,10 @@ namespace Project
         private Pokemon pokemon;
         public TypeQuestion(int pokemonID)
         {
-            pokemon = new Pokemon(pokemonID);
-            answers = pokemon.GetTypes();
-            correctAnswer = answers[0];
-            Shuffle(answers);
+            pokemon = new Pokemon(pokemonID);  //Create new Pokemon 
+            answers = pokemon.GetTypes();      //fill up array with answers
+            correctAnswer = answers[0];        //store correct answer
+            Shuffle(answers);                  //shuffle array
         }
 
         public override string GetQuestion()
